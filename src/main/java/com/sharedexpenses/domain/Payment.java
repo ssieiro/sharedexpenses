@@ -6,18 +6,19 @@ public class Payment {
     private final int paymentId;
     private static int paymentCounter;
     private String concept;
+    private double amount;
     private Friend payer;
     private Date date;
 
     private Payment(){ this.paymentId = ++Payment.paymentCounter;}
 
-    public Payment(String concept, Friend payer, Date date){
+    public Payment(String concept, double amount, Friend payer, Date date){
         this();
         this.concept = concept;
+        this.amount = amount;
         this.payer = payer;
         this.date = date;
     }
-
     public int getPaymentId() {
         return paymentId;
     }
@@ -28,6 +29,14 @@ public class Payment {
 
     public void setConcept(String concept) {
         this.concept = concept;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public Friend getPayer() {
