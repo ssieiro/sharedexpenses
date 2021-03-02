@@ -1,15 +1,15 @@
-package es.ssieiro.sharedexpenses.restservice;
+package com.sharedexpenses.restservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(value = "es.ssieiro.sharedexpenses")
-public class SharedexpensesApplication {
+@ComponentScan(value = "com.sharedexpenses")
+public class SharedExpensesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SharedexpensesApplication.class, args);
+		SpringApplication.run(SharedExpensesApplication.class, args);
 	}
 
 }
