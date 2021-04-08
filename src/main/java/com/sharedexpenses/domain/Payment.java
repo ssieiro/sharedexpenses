@@ -1,67 +1,59 @@
 package com.sharedexpenses.domain;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
-public class Payment {
-    private final int paymentId;
-    private static int paymentCounter;
-    private String concept;
-    private double amount;
-    private Friend payer;
-    private Date date;
+class Payment {
+    private final String concept;
+    private final BigDecimal amount;
+    private final Friend payer;
+    private final LocalDateTime date;
 
-    private Payment(){ this.paymentId = ++Payment.paymentCounter;}
 
-    public Payment(String concept, double amount, Friend payer, Date date){
-        this();
+    public Payment(String concept, BigDecimal amount, Friend payer, LocalDateTime date){
         this.concept = concept;
         this.amount = amount;
         this.payer = payer;
         this.date = date;
-    }
-    public int getPaymentId() {
-        return paymentId;
     }
 
     public String getConcept() {
         return concept;
     }
 
-    public void setConcept(String concept) {
-        this.concept = concept;
-    }
-
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public Friend getPayer() {
         return payer;
     }
 
-    public void setPayer(Friend payer) {
-        this.payer = payer;
-    }
-
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     @Override
     public String toString() {
         return "Payment{" +
-                "paymentId=" + paymentId +
-                ", concept='" + concept + '\'' +
+                "concept='" + concept + '\'' +
+                ", amount=" + amount +
                 ", payer=" + payer +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Payment payment = (Payment) o;
+        return concept.equals(payment.concept) && amount.equals(payment.amount) && payer.equals(payment.payer) && date.equals(payment.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(concept, amount, payer, date);
     }
 }

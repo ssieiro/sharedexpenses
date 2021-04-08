@@ -1,35 +1,35 @@
 package com.sharedexpenses.domain;
 
-public class Friend {
-    private final int friendId;
-    private static int friendCounter;
-    private String name;
+import java.util.Objects;
 
-    private Friend(){this.friendId = ++Friend.friendCounter;}
+class Friend {
+    private final String name;
 
-    public Friend (String name){
-        this();
+    public Friend(String name) {
         this.name = name;
     }
-
-    public int getFriendId() {
-        return friendId;
-    }
-
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
         return "Friend{" +
-                "friendId=" + friendId +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Friend friend = (Friend) o;
+        return Objects.equals(name, friend.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

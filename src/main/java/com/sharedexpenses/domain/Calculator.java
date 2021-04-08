@@ -1,43 +1,63 @@
 package com.sharedexpenses.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DebtsCalculator{
+public class Calculator {
 
-    public static List<Debt> calculateDebts(FriendsGroup friendsGroup) {
-        return Collections.emptyList();
+    public static List<Balance> calculateBalance(FriendsGroup friendsGroup) {
+
+        if (friendsGroup.getFriendsList().isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        else {
+            List<Balance> balance = new ArrayList<>();
+            friendsGroup.getFriendsList().forEach(friend -> {
+                Balance friendBalance = new Balance(calculateDebtByFriend(friend, friendsGroup), friend);
+                balance.add(friendBalance);
+            });
+            return balance;
+        }
     }
-    /*
-
-    public static BigDecimal calculateTotalAmount(List<Payment> payments) {
-        BigDecimal sum = payments.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-        return sum;
-    }
 
 
+    private static BigDecimal calculateTotalAmount(List<Payment> payments) {
 
-    public double calculateDebtByFriend(Friend friendToCompare) {
-        double totalAmount = calculateTotalAmount();
-        int friendToCompareId = friendToCompare.getFriendId();
-        List<Payment> paymentsByFriend = new ArrayList<>();
+        List <BigDecimal> amounts = new ArrayList<>();
         payments.forEach(payment -> {
-            if (payment.getPayer().getFriendId() == friendToCompareId) {
-                paymentsByFriend.add(payment);
-            }
+            amounts.add(payment.getAmount());
         });
 
-        double friendPayments = paymentsByFriend.stream().mapToDouble(Payment::getAmount).sum();
-        double debt = (totalAmount/friendsList.size()) - friendPayments;
-        return debt;
+        return amounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public void printTotalDebts(){
-        System.out.println("Grupo: " + this.name);
-        friendsList.forEach(friend -> {
-            System.out.println(friend.getName() + ": " + calculateDebtByFriend(friend) );
-        });
-    }*/
 
+    private static BigDecimal calculateDebtByFriend(Friend friendToCompare, FriendsGroup friendsGroup) {
+
+        if (friendsGroup.getPayments().isEmpty()){
+            return BigDecimal.valueOf(0).setScale(2);
+        }
+
+        else {
+            BigDecimal totalAmount = calculateTotalAmount(friendsGroup.getPayments());
+
+            String friendToCompareName = friendToCompare.getName();
+            List<BigDecimal> paymentsByFriend = new ArrayList<>();
+
+            friendsGroup.getPayments().forEach(payment -> {
+                if (payment.getPayer().getName().equals(friendToCompareName)) {
+                    paymentsByFriend.add(payment.getAmount());
+                }
+            });
+
+            BigDecimal friendPayments = paymentsByFriend.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal debt = totalAmount.divide((BigDecimal.valueOf(friendsGroup.getFriendsList().size())), 2, RoundingMode.CEILING)
+                    .subtract(friendPayments);
+            return debt;
+        }
+    }
 }

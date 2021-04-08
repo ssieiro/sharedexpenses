@@ -1,2 +1,4 @@
-package com.sharedexpenses.domain;public class Debt {
+package com.sharedexpenses.domain;
+
+public class Debt {
 }
