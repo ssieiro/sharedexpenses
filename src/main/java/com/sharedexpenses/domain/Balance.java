@@ -3,7 +3,7 @@ package com.sharedexpenses.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Balance {
+public class Balance implements Comparable<Balance>{
     private final BigDecimal balance;
     private final Friend friend;
 
@@ -35,5 +35,11 @@ public class Balance {
     @Override
     public int hashCode() {
         return Objects.hash(balance, friend);
+    }
+
+
+    @Override
+    public int compareTo(Balance o) {
+        return this.balance.compareTo(o.balance);
     }
 }

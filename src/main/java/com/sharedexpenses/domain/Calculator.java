@@ -24,7 +24,6 @@ public class Calculator {
         }
     }
 
-
     private static BigDecimal calculateTotalAmount(List<Payment> payments) {
 
         List <BigDecimal> amounts = new ArrayList<>();
@@ -55,9 +54,40 @@ public class Calculator {
             });
 
             BigDecimal friendPayments = paymentsByFriend.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-            BigDecimal debt = totalAmount.divide((BigDecimal.valueOf(friendsGroup.getFriendsList().size())), 2, RoundingMode.CEILING)
+            return totalAmount.divide((BigDecimal.valueOf(friendsGroup.getFriendsList().size())), 2, RoundingMode.CEILING)
                     .subtract(friendPayments);
-            return debt;
         }
+    }
+
+    public static List<Debt> calculateDebts(FriendsGroup friendsGroup) {
+        List<Balance> balanceList = calculateBalance(friendsGroup);
+
+        List<Debt> debtsList = new ArrayList<>();
+
+        while (!balanceList.isEmpty()) {
+            balanceList.sort(Collections.reverseOrder());
+            Balance firstBalance = balanceList.get(0);
+            Balance lastBalance = balanceList.get(balanceList.size()-1);
+            BigDecimal firstBalanceAmount = firstBalance.getBalance();
+            BigDecimal lastBalanceAmount = lastBalance.getBalance();
+            balanceList.remove(firstBalance);
+            balanceList.remove(lastBalance);
+
+            Debt debt = new Debt(firstBalance.getFriend(), lastBalance.getFriend(), firstBalanceAmount);
+            debtsList.add(debt);
+            firstBalance = new Balance(firstBalanceAmount.subtract(firstBalanceAmount), firstBalance.getFriend());
+            lastBalance = new Balance(lastBalanceAmount.add(firstBalanceAmount), lastBalance.getFriend());
+
+            if ((firstBalance.getBalance().compareTo(BigDecimal.valueOf(-0.05)) < 0) ||
+                    (firstBalance.getBalance().compareTo(BigDecimal.valueOf(0.05)) > 0)) {
+               balanceList.add(firstBalance);
+            }
+            if ((lastBalance.getBalance().compareTo(BigDecimal.valueOf(-0.05)) < 0) ||
+                    (lastBalance.getBalance().compareTo(BigDecimal.valueOf(0.05)) > 0)) {
+                balanceList.add(lastBalance);
+            }
+        }
+
+        return debtsList;
     }
 }
