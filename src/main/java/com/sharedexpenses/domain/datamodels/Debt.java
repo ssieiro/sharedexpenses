@@ -1,4 +1,4 @@
-package com.sharedexpenses.domain;
+package com.sharedexpenses.domain.datamodels;
 
 import java.math.BigDecimal;
 import java.util.Objects;

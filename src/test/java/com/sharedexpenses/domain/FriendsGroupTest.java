@@ -2,6 +2,10 @@ package com.sharedexpenses.domain;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+
+import com.sharedexpenses.domain.datamodels.Friend;
+import com.sharedexpenses.domain.datamodels.FriendsGroup;
+import com.sharedexpenses.domain.datamodels.Payment;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

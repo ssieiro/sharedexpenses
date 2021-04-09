@@ -1,8 +1,8 @@
-package com.sharedexpenses.domain;
+package com.sharedexpenses.domain.datamodels;
 
 import java.util.Objects;
 
-class Friend {
+public class Friend {
     private final String name;
 
     public Friend(String name) {

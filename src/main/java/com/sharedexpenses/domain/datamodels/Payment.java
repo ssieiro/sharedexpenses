@@ -1,10 +1,10 @@
-package com.sharedexpenses.domain;
+package com.sharedexpenses.domain.datamodels;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-class Payment {
+public class Payment {
     private final String concept;
     private final BigDecimal amount;
     private final Friend payer;
