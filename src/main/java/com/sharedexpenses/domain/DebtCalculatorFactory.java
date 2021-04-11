@@ -1,9 +1,9 @@
 package com.sharedexpenses.domain;
 
-import com.sharedexpenses.domain.calculatorsfirstimplementation.DebtCalculatorFirstImplementation;
+import com.sharedexpenses.domain.calculatorsfirstimpl.DebtCalculatorFirstImpl;
 
 public class DebtCalculatorFactory {
     public static DebtCalculator getInstance(){
-        return new DebtCalculatorFirstImplementation();
+        return new DebtCalculatorFirstImpl();
     }
 }

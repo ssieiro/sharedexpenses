@@ -1,4 +1,4 @@
-package com.sharedexpenses.domain.calculatorsfirstimplementation;
+package com.sharedexpenses.domain.calculatorsfirstimpl;
 
 import com.sharedexpenses.domain.BalanceCalculator;
 import com.sharedexpenses.domain.BalanceCalculatorFactory;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DebtCalculatorFirstImplementation implements DebtCalculator {
+public class DebtCalculatorFirstImpl implements DebtCalculator {
     public List<Debt> calculateDebts(FriendsGroup friendsGroup) {
         BalanceCalculator balanceCalculator = BalanceCalculatorFactory.getInstance();
         List<Balance> balanceList = balanceCalculator.calculateBalance(friendsGroup);

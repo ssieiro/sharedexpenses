@@ -1,9 +1,9 @@
 package com.sharedexpenses.domain;
 
-import com.sharedexpenses.domain.calculatorsfirstimplementation.BalanceCalculatorFirstImplementation;
+import com.sharedexpenses.domain.calculatorsfirstimpl.BalanceCalculatorFirstImpl;
 
 public class BalanceCalculatorFactory {
     public static BalanceCalculator getInstance(){
-        return new BalanceCalculatorFirstImplementation();
+        return new BalanceCalculatorFirstImpl();
     }
 }

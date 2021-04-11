@@ -1,4 +1,4 @@
-package com.sharedexpenses.restservice;
+package com.sharedexpenses;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +11,6 @@ public class SharedExpensesApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(SharedExpensesApplication.class, args);
-
 
 	}
 

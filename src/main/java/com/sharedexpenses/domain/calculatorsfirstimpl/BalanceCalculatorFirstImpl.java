@@ -1,4 +1,4 @@
-package com.sharedexpenses.domain.calculatorsfirstimplementation;
+package com.sharedexpenses.domain.calculatorsfirstimpl;
 
 import com.sharedexpenses.domain.BalanceCalculator;
 import com.sharedexpenses.domain.datamodels.Balance;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BalanceCalculatorFirstImplementation implements BalanceCalculator {
+public class BalanceCalculatorFirstImpl implements BalanceCalculator {
     public List<Balance> calculateBalance(FriendsGroup friendsGroup) {
 
         if (friendsGroup.getFriendsList().isEmpty()) {
