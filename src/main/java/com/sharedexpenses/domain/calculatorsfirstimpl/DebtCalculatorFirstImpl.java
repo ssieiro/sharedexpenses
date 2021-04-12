@@ -1,20 +1,24 @@
 package com.sharedexpenses.domain.calculatorsfirstimpl;
 
 import com.sharedexpenses.domain.BalanceCalculator;
-import com.sharedexpenses.domain.BalanceCalculatorFactory;
 import com.sharedexpenses.domain.DebtCalculator;
 import com.sharedexpenses.domain.datamodels.Balance;
 import com.sharedexpenses.domain.datamodels.Debt;
 import com.sharedexpenses.domain.datamodels.FriendsGroup;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Component
 public class DebtCalculatorFirstImpl implements DebtCalculator {
+    @Autowired
+    BalanceCalculator balanceCalculator;
+
     public List<Debt> calculateDebts(FriendsGroup friendsGroup) {
-        BalanceCalculator balanceCalculator = BalanceCalculatorFactory.getInstance();
         List<Balance> balanceList = balanceCalculator.calculateBalance(friendsGroup);
 
         List<Debt> debtsList = new ArrayList<>();

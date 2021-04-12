@@ -5,6 +5,7 @@ import com.sharedexpenses.domain.datamodels.Balance;
 import com.sharedexpenses.domain.datamodels.Friend;
 import com.sharedexpenses.domain.datamodels.FriendsGroup;
 import com.sharedexpenses.domain.datamodels.Payment;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Component
 public class BalanceCalculatorFirstImpl implements BalanceCalculator {
     public List<Balance> calculateBalance(FriendsGroup friendsGroup) {
 

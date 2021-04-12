@@ -4,6 +4,8 @@ import com.sharedexpenses.domain.datamodels.Debt;
 import com.sharedexpenses.domain.datamodels.Friend;
 import com.sharedexpenses.domain.datamodels.FriendsGroup;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,8 +14,10 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+@SpringBootTest
 public class DebtCalculatorTest {
-    DebtCalculator debtCalculator = DebtCalculatorFactory.getInstance();
+    @Autowired
+    DebtCalculator debtCalculator;
     FriendsGroup group = new FriendsGroup("Grupo de test");
 
     @Test
