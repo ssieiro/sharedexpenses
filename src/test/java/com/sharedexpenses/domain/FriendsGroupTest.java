@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+
 public class FriendsGroupTest {
     FriendsGroup group = new FriendsGroup("Grupo de test");
 
@@ -29,7 +30,7 @@ public class FriendsGroupTest {
     public void canAddPayment() {
         LocalDateTime date = LocalDateTime.now();
         group.addFriend("Paco");
-        group.addPayment("concepto test", BigDecimal.valueOf(10), "Paco", date);
+        group.addPayment("concepto test", BigDecimal.valueOf(10), group.getFriendByName("Paco"), date);
 
         assertThat(group.getPayments(), contains(new Payment("concepto test", BigDecimal.valueOf(10), new Friend("Paco"), date)));
     }

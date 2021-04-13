@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class FriendsGroup {
-    private final String name;
+    private String name;
     private final List<Friend> friendsList = new ArrayList<>();
     private final List<Payment> payments = new ArrayList<>();
 
-
+    public FriendsGroup(){};
     public FriendsGroup(String name) {
         this.name = name;
     }
@@ -28,16 +28,25 @@ public class FriendsGroup {
         return payments;
     }
 
+    public Friend getFriendByName(String friendName){
+        Optional<Friend> opFriend = friendsList.stream().filter(friend -> friend.getName().equals(friendName)).findFirst();
+        if (opFriend.isPresent()) {
+            Friend friend = opFriend.get();
+            return friend;
+        } else {
+            throw new RuntimeException("Friend not found -"+friendName);
+        }
+    }
+
     public void addFriend(String name) {
         Friend friend = new Friend(name);
         friendsList.add(friend);
     }
 
 
-    public void addPayment(String concept, BigDecimal amount, String payerName, LocalDateTime date) {
-        Optional<Friend> payer = friendsList.stream().filter(friend -> friend.getName().equals(payerName)).findFirst();
-        if (payer.isPresent()) {
-            Payment payment = new Payment(concept, amount, payer.get(), date);
+    public void addPayment(String concept, BigDecimal amount, Friend friend, LocalDateTime date) {
+        if (friendsList.contains(friend)){
+            Payment payment = new Payment(concept, amount, friend, date);
             payments.add(payment);
         }
     }

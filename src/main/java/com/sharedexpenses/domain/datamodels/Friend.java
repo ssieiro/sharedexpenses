@@ -3,7 +3,9 @@ package com.sharedexpenses.domain.datamodels;
 import java.util.Objects;
 
 public class Friend {
-    private final String name;
+    private String name;
+
+    public Friend(){}
 
     public Friend(String name) {
         this.name = name;

@@ -5,11 +5,12 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Payment {
-    private final String concept;
-    private final BigDecimal amount;
-    private final Friend payer;
-    private final LocalDateTime date;
+    private String concept;
+    private BigDecimal amount;
+    private Friend payer;
+    private LocalDateTime date;
 
+    public Payment(){}
 
     public Payment(String concept, BigDecimal amount, Friend payer, LocalDateTime date){
         this.concept = concept;
