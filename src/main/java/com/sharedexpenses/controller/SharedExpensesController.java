@@ -12,16 +12,14 @@ import java.util.Optional;
 @RequestMapping("/")
 public class SharedExpensesController {
 
+    private final SharedExpensesService sharedExpensesService;
+
     @Autowired
-    private SharedExpensesService sharedExpensesService;
-
-
-    // GET
-    @GetMapping("/greetings")
-    public String greeting() {
-        return "Hola mundo!!";
+    public SharedExpensesController(SharedExpensesService sharedExpensesService) {
+        this.sharedExpensesService = sharedExpensesService;
     }
 
+    // GET
     @GetMapping("/groups")
     public List<FriendsGroup> getAllGroups(){
         return sharedExpensesService.getAllGroups();

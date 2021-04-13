@@ -1,12 +1,10 @@
-package com.sharedexpenses.domain;
+package com.sharedexpenses.domain.defaultcalculators;
 
+import com.sharedexpenses.domain.BalanceCalculator;
 import com.sharedexpenses.domain.datamodels.Balance;
 import com.sharedexpenses.domain.datamodels.Friend;
 import com.sharedexpenses.domain.datamodels.FriendsGroup;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
 
 
 import java.math.BigDecimal;
@@ -18,11 +16,10 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@SpringBootTest
-public class BalanceCalculatorTest {
 
-    @Autowired
-    private BalanceCalculator balanceCalculator;
+public class DefaultBalanceCalculatorTest {
+
+    private final BalanceCalculator balanceCalculator = new DefaultBalanceCalculator();
     FriendsGroup group = new FriendsGroup("Grupo de test");
 
     @Test

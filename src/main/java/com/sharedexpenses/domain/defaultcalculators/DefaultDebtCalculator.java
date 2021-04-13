@@ -1,4 +1,4 @@
-package com.sharedexpenses.domain.calculatorsfirstimpl;
+package com.sharedexpenses.domain.defaultcalculators;
 
 import com.sharedexpenses.domain.BalanceCalculator;
 import com.sharedexpenses.domain.DebtCalculator;
@@ -14,9 +14,15 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class DebtCalculatorFirstImpl implements DebtCalculator {
+public class DefaultDebtCalculator implements DebtCalculator {
+
+
+    private final BalanceCalculator balanceCalculator;
+
     @Autowired
-    BalanceCalculator balanceCalculator;
+    public DefaultDebtCalculator(BalanceCalculator balanceCalculator) {
+        this.balanceCalculator = balanceCalculator;
+    }
 
     public List<Debt> calculateDebts(FriendsGroup friendsGroup) {
         List<Balance> balanceList = balanceCalculator.calculateBalance(friendsGroup);

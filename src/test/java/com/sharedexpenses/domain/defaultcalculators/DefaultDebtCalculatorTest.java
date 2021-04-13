@@ -1,11 +1,11 @@
-package com.sharedexpenses.domain;
+package com.sharedexpenses.domain.defaultcalculators;
 
+import com.sharedexpenses.domain.BalanceCalculator;
+import com.sharedexpenses.domain.DebtCalculator;
 import com.sharedexpenses.domain.datamodels.Debt;
 import com.sharedexpenses.domain.datamodels.Friend;
 import com.sharedexpenses.domain.datamodels.FriendsGroup;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,10 +14,11 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-@SpringBootTest
-public class DebtCalculatorTest {
-    @Autowired
-    DebtCalculator debtCalculator;
+
+public class DefaultDebtCalculatorTest {
+
+    BalanceCalculator balanceCalculator = new DefaultBalanceCalculator();
+    DebtCalculator debtCalculator = new DefaultDebtCalculator(balanceCalculator);
     FriendsGroup group = new FriendsGroup("Grupo de test");
 
     @Test

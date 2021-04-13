@@ -9,8 +9,13 @@ import java.util.Optional;
 
 @Service
 public class SharedExpensesServiceImpl implements SharedExpensesService {
+
+    private final SharedExpensesDAO sharedExpensesDAO;
+
     @Autowired
-    private SharedExpensesDAO sharedExpensesDAO;
+    public SharedExpensesServiceImpl(SharedExpensesDAO sharedExpensesDAO){
+        this.sharedExpensesDAO = sharedExpensesDAO;
+    }
 
     @Override
     public List<FriendsGroup> getAllGroups() {
