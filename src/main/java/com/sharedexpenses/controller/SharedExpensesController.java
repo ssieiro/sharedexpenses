@@ -26,9 +26,9 @@ public class SharedExpensesController {
     }
 
     @GetMapping("/groups/{groupName}")
-    public FriendsGroup getGroup(@PathVariable String groupName){
+    public FriendsGroup getGroupByName(@PathVariable String groupName){
 
-        Optional<FriendsGroup> group = sharedExpensesService.findGroupByName(groupName);
+        Optional<FriendsGroup> group = sharedExpensesService.getGroupByName(groupName);
 
         if(group.isPresent()) {
             return group.get();
@@ -39,25 +39,25 @@ public class SharedExpensesController {
 
     @GetMapping("groups/{groupName}/friends")
     public List<Friend> getFriends(@PathVariable String groupName){
-        FriendsGroup group = this.getGroup(groupName);
+        FriendsGroup group = this.getGroupByName(groupName);
         return sharedExpensesService.getFriends(group);
     }
 
     @GetMapping("groups/{groupName}/payments")
     public List<Payment> getPayments(@PathVariable String groupName){
-        FriendsGroup group = this.getGroup(groupName);
+        FriendsGroup group = this.getGroupByName(groupName);
         return sharedExpensesService.getPayments(group);
     }
 
     @GetMapping("groups/{groupName}/balance")
     public List<Balance> calculateBalance(@PathVariable String groupName){
-        FriendsGroup group = this.getGroup(groupName);
+        FriendsGroup group = this.getGroupByName(groupName);
         return sharedExpensesService.calculateBalance(group);
     }
 
     @GetMapping("groups/{groupName}/debts")
     public List<Debt> calculateDebts(@PathVariable String groupName){
-        FriendsGroup group = this.getGroup(groupName);
+        FriendsGroup group = this.getGroupByName(groupName);
         return sharedExpensesService.calculateDebts(group);
     }
 
@@ -70,13 +70,13 @@ public class SharedExpensesController {
 
     @PostMapping("/groups/{groupName}/friends")
     public Friend addFriend (@PathVariable String groupName, @RequestBody Friend friend) {
-        FriendsGroup group = this.getGroup(groupName);
+        FriendsGroup group = this.getGroupByName(groupName);
         return sharedExpensesService.addFriend(group, friend);
     }
 
     @PostMapping("/groups/{groupName}/payments")
     public Payment addPayment (@PathVariable String groupName, @RequestBody Payment payment) {
-        FriendsGroup group = this.getGroup(groupName);
+        FriendsGroup group = this.getGroupByName(groupName);
         return sharedExpensesService.addPayment(group, payment);
     }
 

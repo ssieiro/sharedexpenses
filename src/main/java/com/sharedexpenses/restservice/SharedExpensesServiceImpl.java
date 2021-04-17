@@ -23,7 +23,7 @@ public class SharedExpensesServiceImpl implements SharedExpensesService {
     }
 
     @Override
-    public Optional<FriendsGroup> findGroupByName(String groupName) { return sharedExpensesDAO.getGroupByName(groupName); }
+    public Optional<FriendsGroup> getGroupByName(String groupName) { return sharedExpensesDAO.getGroupByName(groupName); }
 
     @Override
     public List<Friend> getFriends(FriendsGroup group) { return sharedExpensesDAO.getFriends(group);}
