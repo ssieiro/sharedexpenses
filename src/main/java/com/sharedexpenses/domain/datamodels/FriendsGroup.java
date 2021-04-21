@@ -1,20 +1,32 @@
 package com.sharedexpenses.domain.datamodels;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+
 public class FriendsGroup {
+
+    private int id;
+
     private String name;
+
     private final List<Friend> friendsList = new ArrayList<>();
+
     private final List<Payment> payments = new ArrayList<>();
 
     public FriendsGroup(){};
     public FriendsGroup(String name) {
         this.name = name;
     }
+
+    public int getId(){ return id; }
 
     public String getName() {
         return name;
@@ -51,13 +63,3 @@ public class FriendsGroup {
         }
     }
 }
-
-/*    public void removePayment(String concept) {
-        payments.removeIf(payment -> payment.getConcept().equals(concept));
-    }
-
-}
-       public void removeFriend(String name) {
-        friendsList.removeIf(friend -> friend.getName().equals(name));
-    }
- */

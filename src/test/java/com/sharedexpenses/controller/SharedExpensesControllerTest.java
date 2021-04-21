@@ -4,7 +4,6 @@ import static org.hamcrest.Matchers.*;
 
 import com.sharedexpenses.domain.datamodels.*;
 import com.sharedexpenses.restservice.SharedExpensesService;
-import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

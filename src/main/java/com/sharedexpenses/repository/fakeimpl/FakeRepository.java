@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/*
 @Component
 public class FakeRepository implements SharedExpensesDAO {
 
@@ -88,4 +89,4 @@ public class FakeRepository implements SharedExpensesDAO {
         return payment;
     }
 
-}
+}*/

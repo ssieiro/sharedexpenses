@@ -2,7 +2,11 @@ package com.sharedexpenses.domain.datamodels;
 
 import java.util.Objects;
 
+
 public class Friend {
+
+    private int id;
+
     private String name;
 
     public Friend(){}
@@ -10,6 +14,8 @@ public class Friend {
     public Friend(String name) {
         this.name = name;
     }
+
+    public int getId(){ return id; }
 
     public String getName() {
         return name;

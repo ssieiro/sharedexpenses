@@ -1,10 +1,15 @@
 package com.sharedexpenses.domain.datamodels;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+
 public class Payment {
+
+
+    private int id;
     private String concept;
     private BigDecimal amount;
     private Friend payer;
@@ -19,6 +24,7 @@ public class Payment {
         this.date = date;
     }
 
+    public int getId(){ return id; }
     public String getConcept() {
         return concept;
     }
