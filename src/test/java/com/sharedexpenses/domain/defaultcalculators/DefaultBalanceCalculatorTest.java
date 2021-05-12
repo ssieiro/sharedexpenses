@@ -3,7 +3,7 @@ package com.sharedexpenses.domain.defaultcalculators;
 import com.sharedexpenses.domain.BalanceCalculator;
 import com.sharedexpenses.domain.datamodels.Balance;
 import com.sharedexpenses.domain.datamodels.Friend;
-import com.sharedexpenses.domain.datamodels.FriendsGroup;
+import com.sharedexpenses.domain.datamodels.Payment;
 import org.junit.jupiter.api.Test;
 
 
@@ -20,83 +20,75 @@ import static org.hamcrest.Matchers.*;
 public class DefaultBalanceCalculatorTest {
 
     private final BalanceCalculator balanceCalculator = new DefaultBalanceCalculator();
-    FriendsGroup group = new FriendsGroup("Grupo de test");
+    Friend friendSonia = new Friend("Sonia", 1);
+    Friend friendPaco = new Friend("Paco", 2);
+
 
     @Test
     public void shouldCalculateBalanceWithoutPaymentsAndFriends() {
-        List<Balance> result = balanceCalculator.calculateBalance(group);
+        List<Balance> result = balanceCalculator.calculateBalance(Collections.emptyList(), Collections.emptyList());
         assertThat(result, is(empty()));
     }
 
     @Test
     public void shouldCalculateBalanceWithoutPayments(){
-        group.addFriend("Paco");
-        List<Balance> result = balanceCalculator.calculateBalance(group);
-        assertThat(balanceCalculator.calculateBalance(group), is(List.of(new Balance(BigDecimal.valueOf(0, 2), new Friend("Paco")))));
+        List<Balance> result = balanceCalculator.calculateBalance(Collections.emptyList(), List.of(new Friend("Paco", 1)));
+        assertThat(result, is(List.of(new Balance(BigDecimal.valueOf(0, 2), new Friend("Paco", 1)))));
     }
 
     @Test
     public void shouldCalculateBalanceWithOnePaymentAndFriend(){
-        group.addFriend("Sonia");
-        group.addPayment("concepto test", BigDecimal.valueOf(20), group.getFriendByName("Sonia"), LocalDateTime.now());
-
-        assertThat(balanceCalculator.calculateBalance(group).size(), is(1));
-        assertThat(balanceCalculator.calculateBalance(group), is(List.of(new Balance(BigDecimal.valueOf(0, 2), new Friend("Sonia")))));
+        Payment payment = new Payment("concepto test", BigDecimal.valueOf(20), 1, LocalDateTime.now());
+        List<Balance> result = balanceCalculator.calculateBalance(List.of(payment), List.of(friendSonia));
+        assertThat(result, is(List.of(new Balance(BigDecimal.valueOf(0, 2), new Friend("Sonia", 1)))));
     }
 
     @Test
     public void shouldCalculateBalanceWithTwoFriendsAndOnePayment(){
-        group.addFriend("Sonia");
-        group.addFriend("Paco");
-        group.addPayment("concepto test", BigDecimal.valueOf(20), group.getFriendByName("Sonia"), LocalDateTime.now());
+        Payment payment = new Payment("concepto test", BigDecimal.valueOf(20), 1, LocalDateTime.now());
+        List<Balance> result = balanceCalculator.calculateBalance(List.of(payment), List.of(friendSonia, friendPaco));
 
-        assertThat(balanceCalculator.calculateBalance(group).size(), is(2));
-        assertThat(balanceCalculator.calculateBalance(group), is(List.of(new Balance(BigDecimal.valueOf(-10.00).setScale(2), new Friend("Sonia")),
-                new Balance(BigDecimal.valueOf(10.00).setScale(2), new Friend("Paco")))));
+        assertThat(result, is(List.of(new Balance(BigDecimal.valueOf(-10.00).setScale(2), new Friend("Sonia", 1)),
+                new Balance(BigDecimal.valueOf(10.00).setScale(2), new Friend("Paco", 2)))));
     }
 
     @Test
     public void shouldCalculateBalanceWithTwoFriendsAndMoreThanOnePayment(){
-        group.addFriend("Sonia");
-        group.addFriend("Paco");
-        group.addPayment("concepto test", BigDecimal.valueOf(20), group.getFriendByName("Sonia"), LocalDateTime.now());
-        group.addPayment("concepto test", BigDecimal.valueOf(20), group.getFriendByName("Sonia"), LocalDateTime.now());
-        group.addPayment("concepto test", BigDecimal.valueOf(20), group.getFriendByName("Paco"), LocalDateTime.now());
+        Payment payment1 = new Payment("concepto test", BigDecimal.valueOf(20), 1, LocalDateTime.now());
+        Payment payment2 = new Payment("concepto test", BigDecimal.valueOf(20), 1, LocalDateTime.now());
+        Payment payment3 = new Payment("concepto test", BigDecimal.valueOf(20), 2, LocalDateTime.now());
+        List<Balance> result = balanceCalculator.calculateBalance(List.of(payment1, payment2, payment3), List.of(friendSonia, friendPaco));
 
-        assertThat(balanceCalculator.calculateBalance(group).size(), is(2));
-        assertThat(balanceCalculator.calculateBalance(group), is(List.of(new Balance(BigDecimal.valueOf(-10).setScale(2), new Friend("Sonia")),
-                new Balance(BigDecimal.valueOf(10).setScale(2), new Friend("Paco")))));
+        assertThat(result, is(List.of(new Balance(BigDecimal.valueOf(-10).setScale(2), new Friend("Sonia", 1)),
+                new Balance(BigDecimal.valueOf(10).setScale(2), new Friend("Paco", 2)))));
     }
 
     @Test
     public void shouldCalculateBalanceWithDecimals(){
-        group.addFriend("Sonia");
-        group.addFriend("Paco");
-        group.addPayment("concepto test", BigDecimal.valueOf(20.5), group.getFriendByName("Sonia"), LocalDateTime.now());
-        group.addPayment("concepto test", BigDecimal.valueOf(20), group.getFriendByName("Sonia"), LocalDateTime.now());
-        group.addPayment("concepto test", BigDecimal.valueOf(20), group.getFriendByName("Paco"), LocalDateTime.now());
+        Payment payment1 = new Payment("concepto test", BigDecimal.valueOf(20.5), 1, LocalDateTime.now());
+        Payment payment2 = new Payment("concepto test", BigDecimal.valueOf(20), 1, LocalDateTime.now());
+        Payment payment3 = new Payment("concepto test", BigDecimal.valueOf(20), 2, LocalDateTime.now());
+        List<Balance> result = balanceCalculator.calculateBalance(List.of(payment1, payment2, payment3), List.of(friendSonia, friendPaco));
 
-        assertThat(balanceCalculator.calculateBalance(group).size(), is(2));
-        assertThat(balanceCalculator.calculateBalance(group), is(List.of(new Balance(BigDecimal.valueOf(-10.25), new Friend("Sonia")),
-                new Balance(BigDecimal.valueOf(10.25), new Friend("Paco")))));
+        assertThat(result, is(List.of(new Balance(BigDecimal.valueOf(-10.25), new Friend("Sonia", 1)),
+                new Balance(BigDecimal.valueOf(10.25), new Friend("Paco", 2)))));
     }
 
     @Test
     public void shouldCompareTwoBalances(){
-        Balance balance1 = new Balance(BigDecimal.valueOf(10), new Friend("Sonia"));
-        Balance balance2 = new Balance(BigDecimal.valueOf(20), new Friend("Paco"));
+        Balance balance1 = new Balance(BigDecimal.valueOf(10), new Friend("Sonia",1));
+        Balance balance2 = new Balance(BigDecimal.valueOf(20), new Friend("Paco", 2));
 
         int resultado = balance1.compareTo(balance2);
 
         assertThat(resultado, is(-1));
-
     }
 
     @Test
     public void shouldSortBalanceList(){
-        Balance balance20 = new Balance(BigDecimal.valueOf(20), new Friend("Sonia"));
-        Balance balance10 = new Balance(BigDecimal.valueOf(10), new Friend("Sonia"));
-        Balance balance30 = new Balance(BigDecimal.valueOf(30), new Friend("Paco"));
+        Balance balance20 = new Balance(BigDecimal.valueOf(20), new Friend("Sonia", 1));
+        Balance balance10 = new Balance(BigDecimal.valueOf(10), new Friend("Sonia", 2));
+        Balance balance30 = new Balance(BigDecimal.valueOf(30), new Friend("Paco", 2));
 
         List<Balance> list = new ArrayList<>();
         list.add(balance20);
@@ -105,9 +97,9 @@ public class DefaultBalanceCalculatorTest {
 
         Collections.sort(list, Collections.reverseOrder());
 
-        assertThat(list, contains(new Balance(BigDecimal.valueOf(30), new Friend("Paco")),
-                new Balance(BigDecimal.valueOf(20), new Friend("Sonia")),
-                new Balance(BigDecimal.valueOf(10), new Friend("Sonia"))));
+        assertThat(list, contains(new Balance(BigDecimal.valueOf(30), new Friend("Paco", 2)),
+                new Balance(BigDecimal.valueOf(20), new Friend("Sonia", 1)),
+                new Balance(BigDecimal.valueOf(10), new Friend("Sonia", 1))));
 
     }
 }

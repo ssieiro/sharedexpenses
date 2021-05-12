@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -19,47 +18,38 @@ public class SharedExpensesController {
         this.sharedExpensesService = sharedExpensesService;
     }
 
-    // GET
+    // GET ALL
     @GetMapping("/groups")
     public List<FriendsGroup> getAllGroups(){
         return sharedExpensesService.getAllGroups();
     }
 
-    @GetMapping("/groups/{groupName}")
-    public FriendsGroup getGroupByName(@PathVariable String groupName){
-
-        Optional<FriendsGroup> group = sharedExpensesService.getGroupByName(groupName);
-
-        if(group.isPresent()) {
-            return group.get();
-        }
-        throw new RuntimeException("Group not found -"+groupName);
-
+    @GetMapping("/friends")
+    public List<Friend> getAllFriends(){
+        return sharedExpensesService.getAllFriends();
     }
 
-    @GetMapping("groups/{groupName}/friends")
-    public List<Friend> getFriends(@PathVariable String groupName){
-        FriendsGroup group = this.getGroupByName(groupName);
-        return sharedExpensesService.getFriends(group);
+    @GetMapping("/payments")
+    public List<Payment> getAllPayments(){
+        return sharedExpensesService.getAllPayments();
     }
 
-    @GetMapping("groups/{groupName}/payments")
-    public List<Payment> getPayments(@PathVariable String groupName){
-        FriendsGroup group = this.getGroupByName(groupName);
-        return sharedExpensesService.getPayments(group);
-    }
+    //GET BY ID
+    @GetMapping("/groups/{id}")
+    public FriendsGroup getGroupById(@PathVariable int id){return sharedExpensesService.getGroupById(id);}
 
-    @GetMapping("groups/{groupName}/balance")
-    public List<Balance> calculateBalance(@PathVariable String groupName){
-        FriendsGroup group = this.getGroupByName(groupName);
-        return sharedExpensesService.calculateBalance(group);
-    }
+    @GetMapping("groups/{groupId}/friends")
+    public List<Friend> getFriendsByGroup(@PathVariable int groupId){return sharedExpensesService.getFriendsByGroup(groupId);}
 
-    @GetMapping("groups/{groupName}/debts")
-    public List<Debt> calculateDebts(@PathVariable String groupName){
-        FriendsGroup group = this.getGroupByName(groupName);
-        return sharedExpensesService.calculateDebts(group);
-    }
+    @GetMapping("groups/{groupId}/payments")
+    public List<Payment> getPaymentsByGroup(@PathVariable int groupId){return sharedExpensesService.getPaymentsByGroup(groupId); }
+
+    //GET BALANCE AND DEBT
+    @GetMapping("groups/{groupId}/balance")
+    public List<Balance> calculateBalance(@PathVariable int groupId){return sharedExpensesService.calculateBalance(groupId);}
+
+    @GetMapping("groups/{groupId}/debts")
+    public List<Debt> calculateDebts(@PathVariable int groupId){return sharedExpensesService.calculateDebts(groupId);}
 
 
     //POST
@@ -68,16 +58,14 @@ public class SharedExpensesController {
         return sharedExpensesService.addGroup(group);
     }
 
-    @PostMapping("/groups/{groupName}/friends")
-    public Friend addFriend (@PathVariable String groupName, @RequestBody Friend friend) {
-        FriendsGroup group = this.getGroupByName(groupName);
-        return sharedExpensesService.addFriend(group, friend);
+
+    @PostMapping("/friends")
+    public Friend addFriend (@RequestBody Friend friend) {
+        return sharedExpensesService.addFriend(friend);
     }
 
-    @PostMapping("/groups/{groupName}/payments")
-    public Payment addPayment (@PathVariable String groupName, @RequestBody Payment payment) {
-        FriendsGroup group = this.getGroupByName(groupName);
-        return sharedExpensesService.addPayment(group, payment);
+    @PostMapping("/payments")
+    public Payment addPayment (@RequestBody Payment payment) {
+        return sharedExpensesService.addPayment(payment);
     }
-
 }

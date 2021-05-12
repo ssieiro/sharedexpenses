@@ -4,21 +4,39 @@ import java.util.Objects;
 
 
 public class Friend {
-
-    private int id;
-
     private String name;
+    private int group_id;
+    private int id;
 
     public Friend(){}
 
-    public Friend(String name) {
+    public Friend(String name, int id) {
         this.name = name;
+        this.id = id;
     }
-
-    public int getId(){ return id; }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getGroup_id() {
+        return group_id;
+    }
+
+    public void setGroup_id(int group_id) {
+        this.group_id = group_id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

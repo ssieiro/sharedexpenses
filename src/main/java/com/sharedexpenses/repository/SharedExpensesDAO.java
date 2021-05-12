@@ -1,21 +1,19 @@
 package com.sharedexpenses.repository;
 
 import com.sharedexpenses.domain.datamodels.*;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public interface SharedExpensesDAO {
 
     public List<FriendsGroup> getAllGroups();
-    public Optional<FriendsGroup> getGroupByName(String groupName);
-    public List<Friend> getFriends(FriendsGroup group);
-    public List<Payment> getPayments(FriendsGroup group);
-    public List<Balance> calculateBalance(FriendsGroup friendsGroup);
-    public List<Debt> calculateDebts(FriendsGroup friendsGroup);
+    public List<Friend> getAllFriends();
+    public List<Payment> getAllPayments();
+    public FriendsGroup getGroupById(int id);
+    public List<Friend> getFriendsByGroup(int groupId);
+    public List<Payment> getPaymentsByGroup(int groupId);
+    public List<Balance> calculateBalance(int groupId);
+    public List<Debt> calculateDebts(int groupId);
     public FriendsGroup addGroup(FriendsGroup group);
-    public Friend addFriend(FriendsGroup group, Friend friend);
-    public Payment addPayment(FriendsGroup group, Payment payment);
+    public Friend addFriend(Friend friend);
+    public Payment addPayment(Payment payment);
 }

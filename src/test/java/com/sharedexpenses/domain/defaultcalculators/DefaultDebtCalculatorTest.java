@@ -2,9 +2,7 @@ package com.sharedexpenses.domain.defaultcalculators;
 
 import com.sharedexpenses.domain.BalanceCalculator;
 import com.sharedexpenses.domain.DebtCalculator;
-import com.sharedexpenses.domain.datamodels.Debt;
-import com.sharedexpenses.domain.datamodels.Friend;
-import com.sharedexpenses.domain.datamodels.FriendsGroup;
+import com.sharedexpenses.domain.datamodels.*;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -19,50 +17,45 @@ public class DefaultDebtCalculatorTest {
 
     BalanceCalculator balanceCalculator = new DefaultBalanceCalculator();
     DebtCalculator debtCalculator = new DefaultDebtCalculator(balanceCalculator);
-    FriendsGroup group = new FriendsGroup("Grupo de test");
+    Friend friendSonia = new Friend("Sonia", 1);
+    Friend friendPaco = new Friend("Paco", 2);
+    Friend friendAlba = new Friend("Alba", 3);
 
     @Test
     public void shouldSettleOneDebtAndTwoFriends(){
-        group.addFriend("Sonia");
-        group.addFriend("Paco");
-        group.addPayment("prueba", BigDecimal.valueOf(20), group.getFriendByName("Sonia"), LocalDateTime.now());
-        List<Debt> debts = debtCalculator.calculateDebts(group);
-        assertThat(debts, is(List.of(new Debt(new Friend("Paco"), new Friend("Sonia"), BigDecimal.valueOf(10).setScale(2)))));
+        Payment payment = new Payment("concepto test", BigDecimal.valueOf(20), 1, LocalDateTime.now());
+        List<Debt> debts = debtCalculator.calculateDebts(List.of(payment), List.of(friendSonia, friendPaco));
+        assertThat(debts, is(List.of(new Debt(new Friend("Paco", 2), new Friend("Sonia", 1), BigDecimal.valueOf(10).setScale(2)))));
     }
 
     @Test
     public void shouldSettleOneDebtWithThreeFriends(){
-        group.addFriend("Sonia");
-        group.addFriend("Paco");
-        group.addFriend("Alba");
-        group.addPayment("prueba", BigDecimal.valueOf(15), group.getFriendByName("Sonia"), LocalDateTime.now());
+        Payment payment = new Payment("concepto test", BigDecimal.valueOf(15), 1, LocalDateTime.now());
+        List<Debt> debts = debtCalculator.calculateDebts(List.of(payment), List.of(friendSonia, friendPaco, friendAlba));
 
-        assertThat(debtCalculator.calculateDebts(group), is(List.of(new Debt(new Friend("Paco"), new Friend("Sonia"), BigDecimal.valueOf(5).setScale(2)),
-                new Debt(new Friend("Alba"), new Friend("Sonia"), BigDecimal.valueOf(5).setScale(2)))));
+        assertThat(debts, is(List.of(new Debt(new Friend("Paco", 2), new Friend("Sonia", 1), BigDecimal.valueOf(5).setScale(2)),
+                new Debt(new Friend("Alba", 3), new Friend("Sonia", 1), BigDecimal.valueOf(5).setScale(2)))));
     }
 
     @Test
     public void shouldSettleDebtsWithDecimals(){
-        group.addFriend("Sonia");
-        group.addFriend("Paco");
-        group.addFriend("Alba");
-        group.addPayment("prueba", BigDecimal.valueOf(15.3), group.getFriendByName("Sonia"), LocalDateTime.now());
-        group.addPayment("prueba", BigDecimal.valueOf(45.3), group.getFriendByName("Alba"), LocalDateTime.now());
+        Payment payment = new Payment("concepto test", BigDecimal.valueOf(15.3), 1, LocalDateTime.now());
+        Payment payment2 = new Payment("concepto test", BigDecimal.valueOf(45.3), 3, LocalDateTime.now());
 
-        assertThat(debtCalculator.calculateDebts(group), is(List.of(new Debt(new Friend("Paco"), new Friend("Alba"), BigDecimal.valueOf(20.20).setScale(2)),
-                new Debt(new Friend("Sonia"), new Friend("Alba"), BigDecimal.valueOf(4.90).setScale(2)))));
+        List<Debt> debts = debtCalculator.calculateDebts(List.of(payment, payment2), List.of(friendSonia, friendPaco, friendAlba));
+
+        assertThat(debts, is(List.of(new Debt(new Friend("Paco",2), new Friend("Alba",3), BigDecimal.valueOf(20.20).setScale(2)),
+                new Debt(new Friend("Sonia",1), new Friend("Alba",3), BigDecimal.valueOf(4.90).setScale(2)))));
 
     }
 
     @Test
     public void shouldSettleNotRoundNumbers(){
-        group.addFriend("Sonia");
-        group.addFriend("Paco");
-        group.addFriend("Alba");
-        group.addPayment("prueba", BigDecimal.valueOf(10), group.getFriendByName("Sonia"), LocalDateTime.now());
+        Payment payment = new Payment("concepto test", BigDecimal.valueOf(10), 1, LocalDateTime.now());
 
-        assertThat(debtCalculator.calculateDebts(group), is(List.of(new Debt(new Friend("Paco"), new Friend("Sonia"), BigDecimal.valueOf(3.34).setScale(2)),
-                new Debt(new Friend("Alba"), new Friend("Sonia"), BigDecimal.valueOf(3.34).setScale(2)))));
+        List<Debt> debts = debtCalculator.calculateDebts(List.of(payment), List.of(friendSonia, friendPaco, friendAlba));
+        assertThat(debts, is(List.of(new Debt(new Friend("Paco",2), new Friend("Sonia",1), BigDecimal.valueOf(3.34).setScale(2)),
+                new Debt(new Friend("Alba",3), new Friend("Sonia",1), BigDecimal.valueOf(3.34).setScale(2)))));
     }
 
 }
