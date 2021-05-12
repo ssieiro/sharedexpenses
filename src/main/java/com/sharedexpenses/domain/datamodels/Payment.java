@@ -5,36 +5,59 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Payment {
-    private int id;
+    private long id;
     private String concept;
     private BigDecimal amount;
-    private int friend_id;
+    private long friend_id;
     private LocalDateTime date;
 
     public Payment(){}
 
-    public Payment(String concept, BigDecimal amount, int friend_id, LocalDateTime date){
+    public Payment(String concept, BigDecimal amount, long friend_id, LocalDateTime date){
         this.concept = concept;
         this.amount = amount;
         this.friend_id = friend_id;
         this.date = date;
     }
 
-    public int getId(){ return id; }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getConcept() {
         return concept;
+    }
+
+    public void setConcept(String concept) {
+        this.concept = concept;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public int getFriend_id() {
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public long getFriend_id() {
         return friend_id;
+    }
+
+    public void setFriend_id(long friend_id) {
+        this.friend_id = friend_id;
     }
 
     public LocalDateTime getDate() {
         return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     @Override

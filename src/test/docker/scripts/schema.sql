@@ -16,27 +16,24 @@ USE `sharedexpenses` ;
 -- Table `sharedexpenses`.`friends_group`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sharedexpenses`.`friends_group` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `sharedexpenses`.`friend`
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `sharedexpenses`.`friend` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `group_id` INT NOT NULL,
+  `group_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `idFriendsGroup_idx` (`group_id` ASC) VISIBLE,
-  CONSTRAINT `idFriendsGroup`
-    FOREIGN KEY (`group_id`)
-    REFERENCES `sharedexpenses`.`friends_group` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  KEY `idFriendsGroup_idx` (`group_id`),
+    CONSTRAINT `group_id` FOREIGN KEY (`group_id`) REFERENCES `friends_group` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -44,21 +41,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `sharedexpenses`.`payment` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `concept` VARCHAR(255) NULL,
-  `amount` DECIMAL NULL,
-  `date` DATETIME NULL,
-  `friend_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `payer_idx` (`friend_id` ASC) VISIBLE,
-  CONSTRAINT `payer`
-    FOREIGN KEY (`friend_id`)
-    REFERENCES `sharedexpenses`.`friend` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `concept` varchar(255) DEFAULT NULL,
+    `amount` decimal(10,0) DEFAULT NULL,
+    `date` datetime DEFAULT NULL,
+    `friend_id` bigint DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `friend_id_idx` (`friend_id`),
+    CONSTRAINT `friend_id` FOREIGN KEY (`friend_id`) REFERENCES `friend` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+

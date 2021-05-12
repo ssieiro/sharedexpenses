@@ -36,20 +36,20 @@ public class SharedExpensesController {
 
     //GET BY ID
     @GetMapping("/groups/{id}")
-    public FriendsGroup getGroupById(@PathVariable int id){return sharedExpensesService.getGroupById(id);}
+    public FriendsGroup getGroupById(@PathVariable long id){return sharedExpensesService.getGroupById(id);}
 
     @GetMapping("groups/{groupId}/friends")
-    public List<Friend> getFriendsByGroup(@PathVariable int groupId){return sharedExpensesService.getFriendsByGroup(groupId);}
+    public List<Friend> getFriendsByGroup(@PathVariable long groupId){return sharedExpensesService.getFriendsByGroup(groupId);}
 
     @GetMapping("groups/{groupId}/payments")
-    public List<Payment> getPaymentsByGroup(@PathVariable int groupId){return sharedExpensesService.getPaymentsByGroup(groupId); }
+    public List<Payment> getPaymentsByGroup(@PathVariable long groupId){return sharedExpensesService.getPaymentsByGroup(groupId); }
 
     //GET BALANCE AND DEBT
     @GetMapping("groups/{groupId}/balance")
-    public List<Balance> calculateBalance(@PathVariable int groupId){return sharedExpensesService.calculateBalance(groupId);}
+    public List<Balance> calculateBalance(@PathVariable long groupId){return sharedExpensesService.calculateBalance(groupId);}
 
     @GetMapping("groups/{groupId}/debts")
-    public List<Debt> calculateDebts(@PathVariable int groupId){return sharedExpensesService.calculateDebts(groupId);}
+    public List<Debt> calculateDebts(@PathVariable long groupId){return sharedExpensesService.calculateDebts(groupId);}
 
 
     //POST

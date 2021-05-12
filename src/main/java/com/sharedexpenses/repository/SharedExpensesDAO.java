@@ -8,11 +8,11 @@ public interface SharedExpensesDAO {
     public List<FriendsGroup> getAllGroups();
     public List<Friend> getAllFriends();
     public List<Payment> getAllPayments();
-    public FriendsGroup getGroupById(int id);
-    public List<Friend> getFriendsByGroup(int groupId);
-    public List<Payment> getPaymentsByGroup(int groupId);
-    public List<Balance> calculateBalance(int groupId);
-    public List<Debt> calculateDebts(int groupId);
+    public FriendsGroup getGroupById(long id);
+    public List<Friend> getFriendsByGroup(long groupId);
+    public List<Payment> getPaymentsByGroup(long groupId);
+    public List<Balance> calculateBalance(long groupId);
+    public List<Debt> calculateDebts(long groupId);
     public FriendsGroup addGroup(FriendsGroup group);
     public Friend addFriend(Friend friend);
     public Payment addPayment(Payment payment);

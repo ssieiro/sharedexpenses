@@ -27,20 +27,20 @@ public class SharedExpensesServiceImpl implements SharedExpensesService {
 
     //GET BY ID
     @Override
-    public FriendsGroup getGroupById(int id) {return sharedExpensesDAO.getGroupById(id);}
+    public FriendsGroup getGroupById(long id) {return sharedExpensesDAO.getGroupById(id);}
 
     @Override
-    public List<Friend> getFriendsByGroup(int groupId) { return sharedExpensesDAO.getFriendsByGroup(groupId);}
+    public List<Friend> getFriendsByGroup(long groupId) { return sharedExpensesDAO.getFriendsByGroup(groupId);}
 
     @Override
-    public List<Payment> getPaymentsByGroup(int groupId) { return sharedExpensesDAO.getPaymentsByGroup(groupId);}
+    public List<Payment> getPaymentsByGroup(long groupId) { return sharedExpensesDAO.getPaymentsByGroup(groupId);}
 
     //CALCULATE
     @Override
-    public List<Balance> calculateBalance(int groupId) { return sharedExpensesDAO.calculateBalance(groupId); }
+    public List<Balance> calculateBalance(long groupId) { return sharedExpensesDAO.calculateBalance(groupId); }
 
     @Override
-    public List<Debt> calculateDebts(int groupId) { return sharedExpensesDAO.calculateDebts(groupId); }
+    public List<Debt> calculateDebts(long groupId) { return sharedExpensesDAO.calculateDebts(groupId); }
 
     //ADD
     @Override

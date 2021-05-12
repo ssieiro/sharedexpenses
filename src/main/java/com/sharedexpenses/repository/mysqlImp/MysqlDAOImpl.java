@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class MysqlDAOImpl implements SharedExpensesDAO {
 
@@ -38,13 +37,13 @@ public class MysqlDAOImpl implements SharedExpensesDAO {
 
     //GET BY ID
     @Override
-    public FriendsGroup getGroupById(int id) { return friendsGroupRepository.findGroupById(id); }
+    public FriendsGroup getGroupById(long id) { return friendsGroupRepository.findGroupById(id); }
 
     @Override
-    public List<Friend> getFriendsByGroup(int groupId) { return friendsGroupRepository.getFriends(groupId); }
+    public List<Friend> getFriendsByGroup(long groupId) { return friendsGroupRepository.getFriends(groupId); }
 
     @Override
-    public List<Payment> getPaymentsByGroup(int groupId) {
+    public List<Payment> getPaymentsByGroup(long groupId) {
         List<Friend> friends = getFriendsByGroup(groupId);
         List<Payment> payments = new ArrayList<>();
         friends.forEach(friend -> {
@@ -56,12 +55,12 @@ public class MysqlDAOImpl implements SharedExpensesDAO {
 
     //CALCULATE
     @Override
-    public List<Balance> calculateBalance(int groupId) {
+    public List<Balance> calculateBalance(long groupId) {
         return balanceCalculator.calculateBalance(getPaymentsByGroup(groupId), getFriendsByGroup(groupId));
     }
 
     @Override
-    public List<Debt> calculateDebts(int groupId) {
+    public List<Debt> calculateDebts(long groupId) {
         return debtCalculator.calculateDebts(getPaymentsByGroup(groupId), getFriendsByGroup(groupId));
     }
 

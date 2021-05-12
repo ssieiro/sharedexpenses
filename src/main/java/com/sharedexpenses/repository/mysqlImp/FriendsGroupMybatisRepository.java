@@ -22,33 +22,39 @@ public interface FriendsGroupMybatisRepository{
 
     //SELECT BY ID
     @Select("SELECT * FROM friends_group WHERE id = #{id}")
-    public FriendsGroup findGroupById(int id);
+    public FriendsGroup findGroupById(long id);
 
     @Select("SELECT * FROM friend WHERE id = #{id}")
-    public Friend findFriendById(int id);
+    public Friend findFriendById(long id);
 
     @Select("SELECT * FROM payment WHERE id = #{id}")
-    public Payment findPaymentById(int id);
+    public Payment findPaymentById(long id);
 
     @Select ("SELECT * FROM friend WHERE group_id = #{groupId}")
-    public List<Friend> getFriends(int groupId);
+    public List<Friend> getFriends(long groupId);
 
     @Select ("SELECT * FROM payment WHERE friend_id = #{friendId}")
-    public List<Payment> getPayments(int friendId);
+    public List<Payment> getPayments(long friendId);
 
     //INSERT
     @Insert("INSERT INTO friends_group(name) " +
             " VALUES (#{name}) ")
-    @SelectKey(keyColumn="id", keyProperty="id", resultType=int.class, before=false, statement="select last_insert_id()")
+    @SelectKey(keyColumn="id", keyProperty="id", resultType=long.class, before=false, statement="select last_insert_id()")
     public void insertFriendsGroup(FriendsGroup friendsGroup);
 
     @Insert("INSERT INTO friend(name, group_id) " +
             " VALUES (#{name}, #{group_id}) ")
-    @SelectKey(keyColumn="id", keyProperty="id", resultType=int.class, before=false, statement="select last_insert_id()")
+    @SelectKey(keyColumn="id", keyProperty="id", resultType=long.class, before=false, statement="select last_insert_id()")
     public void insertFriend(Friend friend);
 
     @Insert("INSERT INTO payment(concept, amount, date, friend_id) " +
             " VALUES (#{concept}, #{amount}, #{date}, #{friend_id})")
-    @SelectKey(keyColumn="id", keyProperty="id", resultType=int.class, before=false, statement="select last_insert_id()")
+    @SelectKey(keyColumn="id", keyProperty="id", resultType=long.class, before=false, statement="select last_insert_id()")
     public void insertPayment(Payment payment);
+
+    //DELETE
+
+    @Delete("DELETE FROM friends_group WHERE id = #{id}")
+    public void deleteById(long id);
+
 }

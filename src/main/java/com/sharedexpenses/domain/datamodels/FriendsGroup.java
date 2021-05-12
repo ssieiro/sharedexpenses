@@ -2,7 +2,7 @@ package com.sharedexpenses.domain.datamodels;
 
 public class FriendsGroup {
 
-    private int id;
+    private long id;
     private String name;
 
     public FriendsGroup(){};
@@ -11,11 +11,11 @@ public class FriendsGroup {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
