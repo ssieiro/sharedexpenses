@@ -9,6 +9,12 @@ public class Friend {
 
     public Friend(){}
 
+    public Friend(String name, long group_id, long id) {
+        this.name = name;
+        this.group_id = group_id;
+        this.id = id;
+    }
+
     public Friend(String name, long id) {
         this.name = name;
         this.id = id;

@@ -31,10 +31,10 @@ public interface FriendsGroupMybatisRepository{
     Payment findPaymentById(long id);
 
     @Select ("SELECT * FROM friend WHERE group_id = #{groupId}")
-    List<Friend> getFriends(long groupId);
+    List<Friend> findFriendsByGroup(long groupId);
 
     @Select ("SELECT * FROM payment WHERE friend_id = #{friendId}")
-    List<Payment> getPayments(long friendId);
+    List<Payment> findPaymentsByFriend(long friendId);
 
     //INSERT
     @Insert("INSERT INTO friends_group(name) " +

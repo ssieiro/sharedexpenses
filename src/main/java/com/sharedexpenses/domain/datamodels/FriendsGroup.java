@@ -6,6 +6,11 @@ public class FriendsGroup {
     private String name;
 
     public FriendsGroup(){};
+
+    public FriendsGroup(String name) {
+        this.name = name;
+    }
+
     public FriendsGroup(String name, int id) {
         this.name = name;
         this.id = id;

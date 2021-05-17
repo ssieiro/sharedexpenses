@@ -40,14 +40,14 @@ public class MysqlDAOImpl implements SharedExpensesDAO {
     public FriendsGroup getGroupById(long id) { return friendsGroupRepository.findGroupById(id); }
 
     @Override
-    public List<Friend> getFriendsByGroup(long groupId) { return friendsGroupRepository.getFriends(groupId); }
+    public List<Friend> getFriendsByGroup(long groupId) { return friendsGroupRepository.findFriendsByGroup(groupId); }
 
     @Override
     public List<Payment> getPaymentsByGroup(long groupId) {
         List<Friend> friends = getFriendsByGroup(groupId);
         List<Payment> payments = new ArrayList<>();
         friends.forEach(friend -> {
-            List<Payment> friendPayments = friendsGroupRepository.getPayments(friend.getId());
+            List<Payment> friendPayments = friendsGroupRepository.findPaymentsByFriend(friend.getId());
             payments.addAll(friendPayments);
         });
         return payments;}
