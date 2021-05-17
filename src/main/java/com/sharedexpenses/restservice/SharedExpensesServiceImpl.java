@@ -51,5 +51,14 @@ public class SharedExpensesServiceImpl implements SharedExpensesService {
 
     @Override
     public Payment addPayment(Payment payment){ return sharedExpensesDAO.addPayment(payment); }
+
+    @Override
+    public void deleteGroup(long id) { sharedExpensesDAO.deleteGroup(id);}
+
+    @Override
+    public void deleteFriend(long id) { sharedExpensesDAO.deleteFriend(id);}
+
+    @Override
+    public void deletePayment(long id) { sharedExpensesDAO.deletePayment(id);}
 }
 

@@ -13,10 +13,10 @@ public class Payment {
 
     public Payment(){}
 
-    public Payment(String concept, BigDecimal amount, long friend_id, LocalDateTime date){
+    public Payment(String concept, BigDecimal amount, long friendId, LocalDateTime date){
         this.concept = concept;
         this.amount = amount;
-        this.friend_id = friend_id;
+        this.friend_id = friendId;
         this.date = date;
     }
 

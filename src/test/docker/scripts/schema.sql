@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `sharedexpenses`.`friend` (
     CONSTRAINT `group_id` FOREIGN KEY (`group_id`) REFERENCES `friends_group` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
+    )
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------

@@ -83,4 +83,13 @@ public class MysqlDAOImpl implements SharedExpensesDAO {
         friendsGroupRepository.insertPayment(payment);
         return friendsGroupRepository.findPaymentById(payment.getId());
     }
+
+    @Override
+    public void deleteGroup(long id) { friendsGroupRepository.deleteGroupById(id); }
+
+    @Override
+    public void deleteFriend(long id) { friendsGroupRepository.deleteFriendById(id);}
+
+    @Override
+    public void deletePayment(long id) { friendsGroupRepository.deletePaymentById(id);}
 }

@@ -16,5 +16,8 @@ public interface SharedExpensesService {
     public FriendsGroup addGroup(FriendsGroup group);
     public Friend addFriend(Friend friend);
     public Payment addPayment(Payment payment);
+    public void deleteGroup(long id);
+    public void deleteFriend(long id);
+    public void deletePayment(long id);
 }
 

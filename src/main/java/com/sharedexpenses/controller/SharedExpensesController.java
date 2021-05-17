@@ -58,7 +58,6 @@ public class SharedExpensesController {
         return sharedExpensesService.addGroup(group);
     }
 
-
     @PostMapping("/friends")
     public Friend addFriend (@RequestBody Friend friend) {
         return sharedExpensesService.addFriend(friend);
@@ -68,4 +67,19 @@ public class SharedExpensesController {
     public Payment addPayment (@RequestBody Payment payment) {
         return sharedExpensesService.addPayment(payment);
     }
+
+    //DELETE
+    @DeleteMapping("/groups/{id}")
+    public void deleteGroup (@PathVariable long id) { sharedExpensesService.deleteGroup(id); }
+
+    @DeleteMapping("/friends/{id}")
+    public void deleteFriend (@PathVariable long id) {
+        sharedExpensesService.deleteFriend(id);
+    }
+
+    @DeleteMapping("/payments/{id}")
+    public void deletePayment (@PathVariable long id) {
+        sharedExpensesService.deletePayment(id);
+    }
+
 }

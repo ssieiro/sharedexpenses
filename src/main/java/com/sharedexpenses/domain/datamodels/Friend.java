@@ -2,7 +2,6 @@ package com.sharedexpenses.domain.datamodels;
 
 import java.util.Objects;
 
-
 public class Friend {
     private String name;
     private long group_id;
