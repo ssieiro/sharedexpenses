@@ -18,7 +18,7 @@ class SharedExpensesControllerTest {
     private final SharedExpensesController sharedExpensesController = new SharedExpensesController(sharedExpensesService);
     private final LocalDateTime date = LocalDateTime.now();
     private final FriendsGroup expectedGroup = new FriendsGroup("Grupo1", 1);
-    private final List<Friend> expectedFriends = List.of(new Friend("Paco", 2));
+    private final List<Friend> expectedFriends = List.of(new Friend("Paco", 1, 2));
     private final List<Payment> expectedPayments = List.of(new Payment("pago1", BigDecimal.valueOf(20.0), 2, date));
 
 
@@ -60,7 +60,7 @@ class SharedExpensesControllerTest {
 
     @Test
     public void shouldCalculateBalance() {
-        List<Balance> expectedBalance = List.of(new Balance(BigDecimal.valueOf(20), new Friend("Paco", 2)));
+        List<Balance> expectedBalance = List.of(new Balance(BigDecimal.valueOf(20), new Friend("Paco", 1, 2)));
         when(sharedExpensesService.calculateBalance(1)).thenReturn(expectedBalance);
         List<Balance> balanceList = sharedExpensesController.calculateBalance(1);
         assertThat(balanceList, is(expectedBalance));
@@ -68,7 +68,7 @@ class SharedExpensesControllerTest {
 
     @Test
     public void shouldCalculateDebts() {
-        List<Debt> expectedDebt = List.of(new Debt(new Friend("Paco", 2), new Friend("Sonia", 1), BigDecimal.valueOf(10)));
+        List<Debt> expectedDebt = List.of(new Debt(new Friend("Paco", 2, 1), new Friend("Sonia", 1, 1), BigDecimal.valueOf(10)));
         when(sharedExpensesService.calculateDebts(1)).thenReturn(expectedDebt);
         List<Debt> debtList = sharedExpensesController.calculateDebts(1);
         assertThat(debtList, is(expectedDebt));
@@ -83,7 +83,7 @@ class SharedExpensesControllerTest {
 
     @Test
     public void shouldAddFriend(){
-        Friend expectedFriend = new Friend("Paco", 1);
+        Friend expectedFriend = new Friend("Paco", 1, 1);
         when(sharedExpensesService.addFriend(expectedFriend)).thenReturn(expectedFriend);
         Friend friend = sharedExpensesController.addFriend(expectedFriend);
         assertThat(friend, is(expectedFriend));

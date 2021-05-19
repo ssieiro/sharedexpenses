@@ -18,7 +18,7 @@ public class SharedExpensesServiceTests {
     private final SharedExpensesService sharedExpensesService = new SharedExpensesServiceImpl(sharedExpensesDAO);
     private final LocalDateTime date = LocalDateTime.now();
     private final FriendsGroup expectedGroup = new FriendsGroup("Grupo1", 1);
-    private final List<Friend> expectedFriends = List.of(new Friend("Paco", 2));
+    private final List<Friend> expectedFriends = List.of(new Friend("Paco",1, 2));
     private final List<Payment> expectedPayments = List.of(new Payment("pago1", BigDecimal.valueOf(20.0), 2, date));
 
 
@@ -60,7 +60,7 @@ public class SharedExpensesServiceTests {
 
     @Test
     public void shouldCalculateBalance() {
-        List<Balance> expectedBalance = List.of(new Balance(BigDecimal.valueOf(20), new Friend("Paco", 2)));
+        List<Balance> expectedBalance = List.of(new Balance(BigDecimal.valueOf(20), new Friend("Paco",1,  2)));
         when(sharedExpensesDAO.calculateBalance(1)).thenReturn(expectedBalance);
         List<Balance> balanceList = sharedExpensesService.calculateBalance(1);
         assertThat(balanceList, is(expectedBalance));
@@ -68,7 +68,7 @@ public class SharedExpensesServiceTests {
 
     @Test
     public void shouldCalculateDebts() {
-        List<Debt> expectedDebt = List.of(new Debt(new Friend("Paco", 2), new Friend("Sonia", 1), BigDecimal.valueOf(10)));
+        List<Debt> expectedDebt = List.of(new Debt(new Friend("Paco",1, 2), new Friend("Sonia",1, 1), BigDecimal.valueOf(10)));
         when(sharedExpensesDAO.calculateDebts(1)).thenReturn(expectedDebt);
         List<Debt> debtList = sharedExpensesService.calculateDebts(1);
         assertThat(debtList, is(expectedDebt));
@@ -85,7 +85,7 @@ public class SharedExpensesServiceTests {
 
     @Test
     public void shouldAddFriend() {
-        Friend expectedFriend = new Friend("Paco", 1);
+        Friend expectedFriend = new Friend("Paco",1,  1);
         when(sharedExpensesDAO.addFriend(expectedFriend)).thenReturn(expectedFriend);
         Friend friend = sharedExpensesService.addFriend(expectedFriend);
         assertThat(friend, is(expectedFriend));

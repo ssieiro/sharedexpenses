@@ -4,19 +4,14 @@ import java.util.Objects;
 
 public class Friend {
     private String name;
-    private long group_id;
+    private long groupId;
     private long id;
 
     public Friend(){}
 
-    public Friend(String name, long group_id, long id) {
+    public Friend(String name, long groupId, long id) {
         this.name = name;
-        this.group_id = group_id;
-        this.id = id;
-    }
-
-    public Friend(String name, long id) {
-        this.name = name;
+        this.groupId = groupId;
         this.id = id;
     }
 
@@ -28,12 +23,12 @@ public class Friend {
         this.name = name;
     }
 
-    public long getGroup_id() {
-        return group_id;
+    public long getGroupId() {
+        return groupId;
     }
 
-    public void setGroup_id(long group_id) {
-        this.group_id = group_id;
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
     }
 
     public long getId() {

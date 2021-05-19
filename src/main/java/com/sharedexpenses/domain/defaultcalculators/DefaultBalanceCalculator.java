@@ -45,7 +45,7 @@ public class DefaultBalanceCalculator implements BalanceCalculator {
             List<BigDecimal> paymentsByFriend = new ArrayList<>();
 
             payments.forEach(payment -> {
-                if (payment.getFriend_id() == friendToCompareId) {
+                if (payment.getFriendId() == friendToCompareId) {
                     paymentsByFriend.add(payment.getAmount());
                 }
             });

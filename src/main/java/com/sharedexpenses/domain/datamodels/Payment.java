@@ -8,7 +8,7 @@ public class Payment {
     private long id;
     private String concept;
     private BigDecimal amount;
-    private long friend_id;
+    private long friendId;
     private LocalDateTime date;
 
     public Payment(){}
@@ -16,7 +16,7 @@ public class Payment {
     public Payment(String concept, BigDecimal amount, long friendId, LocalDateTime date){
         this.concept = concept;
         this.amount = amount;
-        this.friend_id = friendId;
+        this.friendId = friendId;
         this.date = date;
     }
 
@@ -44,12 +44,12 @@ public class Payment {
         this.amount = amount;
     }
 
-    public long getFriend_id() {
-        return friend_id;
+    public long getFriendId() {
+        return friendId;
     }
 
-    public void setFriend_id(long friend_id) {
-        this.friend_id = friend_id;
+    public void setFriendId(long friendId) {
+        this.friendId = friendId;
     }
 
     public LocalDateTime getDate() {
@@ -65,12 +65,12 @@ public class Payment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payment payment = (Payment) o;
-        return id == payment.id && friend_id == payment.friend_id && concept.equals(payment.concept) && amount.equals(payment.amount) && date.equals(payment.date);
+        return id == payment.id && friendId == payment.friendId && concept.equals(payment.concept) && amount.equals(payment.amount) && date.equals(payment.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, concept, amount, friend_id, date);
+        return Objects.hash(id, concept, amount, friendId, date);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Payment {
                 "id=" + id +
                 ", concept='" + concept + '\'' +
                 ", amount=" + amount +
-                ", friendID=" + friend_id +
+                ", friendID=" + friendId +
                 ", date=" + date +
                 '}';
     }
