@@ -1,4 +1,4 @@
-package com.sharedexpenses.domain.datamodels;
+package com.sharedexpenses.domain;
 
 import java.util.Objects;
 

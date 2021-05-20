@@ -1,8 +1,6 @@
 package com.sharedexpenses.domain.defaultcalculators;
 
-import com.sharedexpenses.domain.BalanceCalculator;
-import com.sharedexpenses.domain.DebtCalculator;
-import com.sharedexpenses.domain.datamodels.*;
+import com.sharedexpenses.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,9 +1,9 @@
 package com.sharedexpenses.domain.defaultcalculators;
 
 import com.sharedexpenses.domain.BalanceCalculator;
-import com.sharedexpenses.domain.datamodels.Balance;
-import com.sharedexpenses.domain.datamodels.Friend;
-import com.sharedexpenses.domain.datamodels.Payment;
+import com.sharedexpenses.domain.Balance;
+import com.sharedexpenses.domain.Friend;
+import com.sharedexpenses.domain.Payment;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
