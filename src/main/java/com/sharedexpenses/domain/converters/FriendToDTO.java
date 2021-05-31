@@ -5,7 +5,7 @@ import com.sharedexpenses.domain.FriendDTO;
 
 public class FriendToDTO {
     public static final FriendDTO convert (Friend friend) {
-        return new FriendDTO(friend.getName(), friend.getFriendsGroup().getId(), friend.getId());
+        return new FriendDTO(friend.getId(), friend.getName(), friend.getFriendsGroup().getId());
     }
 }
 

@@ -33,6 +33,7 @@
         FROM payment
         INNER JOIN friend ON payment.friend_id = friend.id
         INNER JOIN friends_group ON friend.group_id = friends_group.id
+        ORDER BY payment.id ASC
     </select>
 
     <select id="findPaymentById" parameterType="long" resultMap="paymentResult">

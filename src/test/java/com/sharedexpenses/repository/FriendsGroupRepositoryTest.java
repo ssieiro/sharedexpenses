@@ -14,15 +14,15 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/*
+
 public class FriendsGroupRepositoryTest {
     private final FriendsGroupMapper friendsGroupMapper = mock(FriendsGroupMapper.class);
     private final FriendsGroupRepository friendsGroupRepository = new MysqlFriendsGroupRepositoryImpl(friendsGroupMapper);
     private final LocalDateTime date = LocalDateTime.now();
     private final List<FriendsGroup> expectedGroups = List.of(new FriendsGroup("Grupo1", 1));
     private final FriendsGroup expectedGroup = new FriendsGroup("Grupo1", 1);
-    private final List<Friend> expectedFriends = List.of(new Friend("Paco",1, 2));
-    private final List<Payment> expectedPayments = List.of(new Payment("pago1", BigDecimal.valueOf(20.0), 2, date));
+    private final List<Friend> expectedFriends = List.of(new Friend(1, "Paco", expectedGroup));
+    private final List<Payment> expectedPayments = List.of(new Payment(1, "pago1", BigDecimal.valueOf(20.0), new Friend(2, "Sonia", expectedGroup), date));
 
     @Test
     void shouldGetAllGroups(){
@@ -45,4 +45,4 @@ public class FriendsGroupRepositoryTest {
         assertThat(friendsList, is(expectedFriends));
     }
 
-}*/
+}

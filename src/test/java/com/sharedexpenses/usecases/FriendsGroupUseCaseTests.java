@@ -15,20 +15,17 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/*
+
 public class FriendsGroupUseCaseTests {
     private final FriendsGroupRepository friendsGroupRepository = mock(FriendsGroupRepository.class);
     private final BalanceCalculator balanceCalculator = new DefaultBalanceCalculator();
     private final DebtCalculator debtCalculator = new DefaultDebtCalculator(balanceCalculator);
     private final FriendsGroupUseCase friendsGroupUseCase = new FriendsGroupUseCaseImpl(friendsGroupRepository, balanceCalculator, debtCalculator);
-    private final LocalDateTime date = LocalDateTime.now();
-    private final FriendsGroup expectedGroup = new FriendsGroup("Grupo1", 1);
-    private final List<Friend> expectedFriends = List.of(new Friend("Paco",1, 2));
-    private final List<Payment> expectedPayments = List.of(new Payment("pago1", BigDecimal.valueOf(20.0), 2, date));
 
 
     @Test
     void shouldGetGroupById() {
+        FriendsGroup expectedGroup = new FriendsGroup("Grupo1", 1);
         when(friendsGroupRepository.getGroupById(1)).thenReturn(expectedGroup);
         FriendsGroup group = friendsGroupUseCase.getGroupById(1);
         assertThat(group, is(expectedGroup));
@@ -36,6 +33,7 @@ public class FriendsGroupUseCaseTests {
 
     @Test
     public void shouldGetFriendsByGroup() {
+        List<Friend> expectedFriends = List.of(new Friend(1, "Paco", new FriendsGroup("Grupo test", 2)));
         when(friendsGroupRepository.getFriendsByGroup(1)).thenReturn(expectedFriends);
         List<Friend> friendsList = friendsGroupUseCase.getFriendsByGroup(1);
         assertThat(friendsList, is(expectedFriends));
@@ -43,6 +41,8 @@ public class FriendsGroupUseCaseTests {
 
     @Test
     public void shouldGetPaymentsByGroup() {
+        List<Payment> expectedPayments = List.of(new Payment(1, "pago1", BigDecimal.valueOf(20.0),
+                new Friend(1, "Paco", new FriendsGroup("Grupo test", 2)), LocalDateTime.now()));
         when(friendsGroupRepository.getPaymentsByGroup(1)).thenReturn(expectedPayments);
         List<Payment> paymentsList = friendsGroupUseCase.getPaymentsByGroup(1);
         assertThat(paymentsList, is(expectedPayments));
@@ -57,4 +57,4 @@ public class FriendsGroupUseCaseTests {
         assertThat(group, is(expectedGroup));
     }
 
-}*/
+}

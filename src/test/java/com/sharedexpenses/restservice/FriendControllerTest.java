@@ -11,25 +11,26 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/*
+
 class FriendControllerTest {
     private final FriendUseCase friendUseCase = mock(FriendUseCase.class);
     private final FriendController friendController = new FriendController(friendUseCase);
-    private final List<Friend> expectedFriends = List.of(new Friend("Paco", 1, 2));
-
 
     @Test
     public void shouldGetAllFriends() {
+        List<Friend> expectedFriends = List.of(new Friend(2, "Paco", new FriendsGroup("Grupo test", 1)));
+        List<FriendDTO> expectedFriendsDTO = List.of(new FriendDTO(2, "Paco", 1));
         when(friendUseCase.getAllFriends()).thenReturn(expectedFriends);
-        List<Friend> friendsList = friendController.getAllFriends();
-        assertThat(friendsList, is(expectedFriends));
+        List<FriendDTO> friendsList = friendController.getAllFriends();
+        assertThat(friendsList, is(expectedFriendsDTO));
     }
 
     @Test
     public void shouldAddFriend() {
-        Friend expectedFriend = new Friend("Paco", 1, 1);
-        when(friendUseCase.addFriend(expectedFriend)).thenReturn(expectedFriend);
-        Friend friend = friendController.addFriend(expectedFriend);
-        assertThat(friend, is(expectedFriend));
+        FriendDTO expectedfriendDTO = new FriendDTO (2, "Paco", 1);
+        Friend friend = new Friend (2, "Paco", new FriendsGroup("Grupo prueba", 1));
+        when(friendUseCase.addFriend(expectedfriendDTO)).thenReturn(friend);
+        FriendDTO friendDTO = friendController.addFriend(expectedfriendDTO);
+        assertThat(friendDTO, is(expectedfriendDTO));
     }
-}*/
+}

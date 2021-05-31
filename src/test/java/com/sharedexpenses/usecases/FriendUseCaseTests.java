@@ -12,15 +12,14 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/*
+
 public class FriendUseCaseTests {
     private final FriendRepository friendRepository = mock(FriendRepository.class);
     private final FriendUseCase friendUseCase = new FriendUseCaseImpl(friendRepository);
-    private final List<Friend> expectedFriends = List.of(new Friend("Paco",1, 2));
-
 
     @Test
     public void shouldGetAllFriends() {
+        List<Friend> expectedFriends = List.of(new Friend(1,"Paco", new FriendsGroup("Prueba test", 2)));
         when(friendRepository.getAllFriends()).thenReturn(expectedFriends);
         List<Friend> friendsList = friendUseCase.getAllFriends();
         assertThat(friendsList, is(expectedFriends));
@@ -28,9 +27,10 @@ public class FriendUseCaseTests {
 
     @Test
     public void shouldAddFriend() {
-        Friend expectedFriend = new Friend("Paco",1,  1);
-        when(friendRepository.addFriend(expectedFriend)).thenReturn(expectedFriend);
-        Friend friend = friendUseCase.addFriend(expectedFriend);
+        FriendDTO friendDTO = new FriendDTO(1, "Paco",  2);
+        Friend expectedFriend = new Friend(1, "Paco",  new FriendsGroup("Prueba test", 2));
+        when(friendRepository.addFriend(friendDTO)).thenReturn(expectedFriend);
+        Friend friend = friendUseCase.addFriend(friendDTO);
         assertThat(friend, is(expectedFriend));
     }
-}*/
+}

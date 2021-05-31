@@ -3,13 +3,13 @@ package com.sharedexpenses.domain;
 import java.util.Objects;
 
 public class Friend {
+    private long id;
     private String name;
     private FriendsGroup friendsGroup;
-    private long id;
 
     public Friend(){}
 
-    public Friend(String name, FriendsGroup friendsGroup, long id) {
+    public Friend(long id, String name, FriendsGroup friendsGroup) {
         this.name = name;
         this.friendsGroup = friendsGroup;
         this.id = id;

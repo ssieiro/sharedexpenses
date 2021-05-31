@@ -3,16 +3,16 @@ package com.sharedexpenses.domain;
 import java.util.Objects;
 
 public class FriendDTO {
+    private long id;
     private String name;
     private long groupId;
-    private long id;
 
     public FriendDTO(){}
 
-    public FriendDTO(String name, long groupId, long id) {
+    public FriendDTO(long id, String name, long groupId) {
+        this.id = id;
         this.name = name;
         this.groupId = groupId;
-        this.id = id;
     }
 
     public String getName() {

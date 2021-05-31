@@ -22,6 +22,7 @@
         friends_group.name as "group_name"
         FROM friend
         INNER JOIN friends_group ON friend.group_id = friends_group.id
+        ORDER BY friend.id ASC
     </select>
 
     <select id="findFriendById" parameterType="long" resultMap="friendResult">

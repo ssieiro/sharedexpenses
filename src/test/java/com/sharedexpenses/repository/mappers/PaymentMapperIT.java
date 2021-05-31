@@ -13,7 +13,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-/*
+
 @SpringBootTest
 public class PaymentMapperIT {
 
@@ -38,7 +38,7 @@ public class PaymentMapperIT {
     //INSERT AND DELETE
     @Test
     public void shouldInsertAndDeletePayment(){
-        paymentMapper.insertPayment(new Payment("Payment test", BigDecimal.valueOf(20), 1, LocalDateTime.now()));
+        paymentMapper.insertPayment(new PaymentDTO(1, "Payment test", BigDecimal.valueOf(20), 1, LocalDateTime.now()));
         List<Payment> paymentssAfterInsert = paymentMapper.findAllPayments();
         assertThat(paymentssAfterInsert.size(), is(3));
         paymentMapper.deletePaymentById(3);
@@ -46,4 +46,4 @@ public class PaymentMapperIT {
         assertThat(paymentsAfteDelete.size(), is(2));
     }
 
-}*/
+}

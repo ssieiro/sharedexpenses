@@ -51,6 +51,7 @@
         FROM friend
         INNER JOIN friends_group ON friend.group_id = friends_group.id
         WHERE group_id = #{groupId}
+        ORDER BY friend.id ASC
     </select>
 
     <select id="findPaymentsByFriend" parameterType="long" resultMap="paymentResult">
@@ -68,6 +69,7 @@
         INNER JOIN friend ON payment.friend_id = friend.id
         INNER JOIN friends_group ON friend.group_id = friends_group.id
         WHERE friend_id = #{friendId}
+        ORDER BY payment.id ASC
     </select>
 
     <insert id="insertFriendsGroup" useGeneratedKeys="true" keyProperty="id" parameterType="FriendsGroup">
