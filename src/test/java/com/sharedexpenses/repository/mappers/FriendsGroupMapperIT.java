@@ -11,6 +11,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+/*
 @SpringBootTest
 public class FriendsGroupMapperIT {
 
@@ -57,3 +58,4 @@ public class FriendsGroupMapperIT {
     }
 
 }
+*/

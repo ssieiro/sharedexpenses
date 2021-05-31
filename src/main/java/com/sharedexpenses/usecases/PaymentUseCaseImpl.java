@@ -22,7 +22,7 @@ public class PaymentUseCaseImpl implements PaymentUseCase {
 
     //ADD
     @Override
-    public Payment addPayment(Payment payment){ return paymentRepository.addPayment(payment); }
+    public Payment addPayment(PaymentDTO payment){ return paymentRepository.addPayment(payment); }
 
     //DELETE
     @Override

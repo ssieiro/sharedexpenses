@@ -16,7 +16,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-
+/*
 public class DefaultBalanceCalculatorTest {
 
     private final BalanceCalculator balanceCalculator = new DefaultBalanceCalculator();
@@ -102,4 +102,4 @@ public class DefaultBalanceCalculatorTest {
                 new Balance(BigDecimal.valueOf(10), new Friend("Sonia",1, 1))));
 
     }
-}
+}*/

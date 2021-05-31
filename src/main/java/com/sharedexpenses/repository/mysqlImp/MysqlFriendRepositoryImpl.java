@@ -1,6 +1,7 @@
 package com.sharedexpenses.repository.mysqlImp;
 
 import com.sharedexpenses.domain.Friend;
+import com.sharedexpenses.domain.FriendDTO;
 import com.sharedexpenses.repository.FriendRepository;
 import com.sharedexpenses.repository.mysqlImp.mappers.FriendMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,15 @@ public class MysqlFriendRepositoryImpl implements FriendRepository {
     @Override
     public List<Friend> getAllFriends() { return friendMapper.findAllFriends(); }
 
+    //GET BY ID
+    @Override
+    public Friend getFriendById(long friendId) { return friendMapper.findFriendById(friendId); }
+
     //ADD
     @Override
-    public Friend addFriend(Friend friend) {
+    public Friend addFriend(FriendDTO friend) {
         friendMapper.insertFriend(friend);
-        return friendMapper.findFriendById(friend.getId());
+        return getFriendById(friend.getId());
     }
 
     //DELETE

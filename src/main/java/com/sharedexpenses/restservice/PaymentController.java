@@ -1,10 +1,13 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.converters.FriendToDTO;
+import com.sharedexpenses.domain.converters.PaymentToDTO;
 import com.sharedexpenses.usecases.PaymentUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,14 +23,20 @@ public class PaymentController {
 
     // GET ALL
     @GetMapping("/payments")
-    public List<Payment> getAllPayments(){
-        return paymentUseCase.getAllPayments();
+    public List<PaymentDTO> getAllPayments(){
+        List<Payment> payments = paymentUseCase.getAllPayments();
+        List<PaymentDTO> paymentsDTO = new ArrayList<>();
+        payments.forEach(payment -> {
+            paymentsDTO.add(PaymentToDTO.convert(payment));
+        });
+        return paymentsDTO;
     }
 
     //POST
     @PostMapping("/payments")
-    public Payment addPayment (@RequestBody Payment payment) {
-        return paymentUseCase.addPayment(payment);
+    public PaymentDTO addPayment (@RequestBody PaymentDTO paymentDTO) {
+        Payment payment = paymentUseCase.addPayment(paymentDTO);
+        return PaymentToDTO.convert(payment);
     }
 
     //DELETE

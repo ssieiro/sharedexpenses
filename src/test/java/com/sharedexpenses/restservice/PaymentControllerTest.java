@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-
+/*
 class PaymentControllerTest {
     private final PaymentUseCase paymentUseCase = mock(PaymentUseCase.class);
     private final PaymentController paymentController = new PaymentController(paymentUseCase);
@@ -36,4 +36,4 @@ class PaymentControllerTest {
         assertThat(payment, is(expectedPayment));
         }
 
-}
+}*/

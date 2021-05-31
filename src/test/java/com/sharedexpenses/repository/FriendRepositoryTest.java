@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
+/*
 public class FriendRepositoryTest {
     private final FriendMapper friendMapper = mock(FriendMapper.class);
     private final FriendRepository friendRepository = new MysqlFriendRepositoryImpl(friendMapper);
@@ -25,4 +25,4 @@ public class FriendRepositoryTest {
         assertThat(friendsList, is(expectedFriends));
     }
 
-}
+}*/

@@ -1,0 +1,64 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sharedexpenses.repository.mysqlImp.mappers.PaymentMapper">
+
+    <resultMap type="Payment" id="paymentResult">
+        <id column="payment_id" property="id" javaType="long"/>
+        <result column="payment_concept" property="concept" javaType="string"/>
+        <result column="payment_amount" property="amount" javaType="BigDecimal"/>
+        <result column="payment_date" property="date" javaType="java.time.LocalDateTime"/>
+        <association property="friend" javaType="Friend">
+            <id column="friend_id" property="id" javaType="long"/>
+            <result column="friend_name" property="name" javaType="string"/>
+            <association property="friendsGroup" javaType="FriendsGroup">
+                <id column="group_id" property="id" javaType="long"/>
+                <result column="group_name" property="name" javaType="string"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <select id="findAllPayments" resultMap="paymentResult">
+        SELECT
+        payment.id             as "payment_id",
+        payment.concept        as "payment_concept",
+        payment.amount         as "payment_amount",
+        friend.id              as "friend_id",
+        friend.name            as "friend_name",
+        friend.group_id        as "friend_group_id",
+        friends_group.id       as "group_id",
+        friends_group.name     as "group_name",
+        payment.date           as "payment_date"
+        FROM payment
+        INNER JOIN friend ON payment.friend_id = friend.id
+        INNER JOIN friends_group ON friend.group_id = friends_group.id
+    </select>
+
+    <select id="findPaymentById" parameterType="long" resultMap="paymentResult">
+        SELECT
+        payment.id             as "payment_id",
+        payment.concept        as "payment_concept",
+        payment.amount         as "payment_amount",
+        friend.id              as "friend_id",
+        friend.name            as "friend_name",
+        friend.group_id        as "friend_group_id",
+        friends_group.id       as "group_id",
+        friends_group.name     as "group_name",
+        payment.date           as "payment_date"
+        FROM payment
+        INNER JOIN friend ON payment.friend_id = friend.id
+        INNER JOIN friends_group ON friend.group_id = friends_group.id
+        WHERE payment.id = #{id}
+    </select>
+
+    <insert id="insertPayment" useGeneratedKeys="true" keyProperty="id" parameterType="PaymentDTO">
+        INSERT INTO payment(concept, amount, date, friend_id)
+        VALUES (#{concept}, #{amount}, #{date}, #{friendId})
+    </insert>
+
+    <delete id="deletePaymentById" parameterType="long">
+        DELETE FROM payment where id = #{id}
+    </delete>
+
+</mapper>

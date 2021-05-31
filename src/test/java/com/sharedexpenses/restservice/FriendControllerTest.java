@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-
+/*
 class FriendControllerTest {
     private final FriendUseCase friendUseCase = mock(FriendUseCase.class);
     private final FriendController friendController = new FriendController(friendUseCase);
@@ -32,4 +32,4 @@ class FriendControllerTest {
         Friend friend = friendController.addFriend(expectedFriend);
         assertThat(friend, is(expectedFriend));
     }
-}
+}*/

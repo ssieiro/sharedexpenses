@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sharedexpenses.repository.mysqlImp.mappers.FriendMapper">
+
+    <resultMap type="Friend" id="friendResult">
+        <id column="friend_id" property="id" javaType="long"/>
+        <result column="friend_name" property="name" javaType="string"/>
+        <association property="friendsGroup" javaType="FriendsGroup">
+            <id column="group_id" property="id" javaType="long"/>
+            <result column="group_name" property="name" javaType="string"/>
+        </association>
+    </resultMap>
+
+    <select id="findAllFriends" resultMap="friendResult">
+        SELECT
+        friend.id as "friend_id",
+        friend.name as "friend_name",
+        friend.group_id as "friend_group_id",
+        friends_group.id as "group_id",
+        friends_group.name as "group_name"
+        FROM friend
+        INNER JOIN friends_group ON friend.group_id = friends_group.id
+    </select>
+
+    <select id="findFriendById" parameterType="long" resultMap="friendResult">
+        SELECT
+        friend.id as "friend_id",
+        friend.name as "friend_name",
+        friend.group_id as "friend_group_id",
+        friends_group.id as "group_id",
+        friends_group.name as "group_name"
+        FROM friend
+        INNER JOIN friends_group ON friend.group_id = friends_group.id
+        WHERE friend.id = #{id}
+    </select>
+
+
+    <insert id="insertFriend" useGeneratedKeys="true" keyProperty="id" parameterType="FriendDTO">
+        INSERT INTO friend (name, group_id)
+        VALUES (#{name},#{groupId})
+    </insert>
+
+    <delete id="deleteFriendById" parameterType="long">
+        DELETE FROM friend where id = #{id}
+    </delete>
+
+</mapper>

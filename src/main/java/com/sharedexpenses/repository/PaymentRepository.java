@@ -1,11 +1,12 @@
 package com.sharedexpenses.repository;
 
 import com.sharedexpenses.domain.Payment;
+import com.sharedexpenses.domain.PaymentDTO;
 
 import java.util.List;
 
 public interface PaymentRepository {
     List<Payment> getAllPayments();
-    Payment addPayment(Payment payment);
+    Payment addPayment(PaymentDTO payment);
     void deletePayment(long id);
 }

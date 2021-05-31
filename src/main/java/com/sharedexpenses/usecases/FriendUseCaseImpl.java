@@ -5,6 +5,7 @@ import com.sharedexpenses.repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,11 +20,12 @@ public class FriendUseCaseImpl implements FriendUseCase {
 
     // GET ALL
     @Override
-    public List<Friend> getAllFriends() { return friendRepository.getAllFriends(); }
+    public List<Friend> getAllFriends() {
+        return friendRepository.getAllFriends(); }
 
     //ADD
     @Override
-    public Friend addFriend(Friend friend) {return friendRepository.addFriend(friend);}
+    public Friend addFriend(FriendDTO friend) { return friendRepository.addFriend(friend); }
 
     //DELETE
     @Override
