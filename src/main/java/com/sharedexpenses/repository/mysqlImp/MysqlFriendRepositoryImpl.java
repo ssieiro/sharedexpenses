@@ -1,7 +1,7 @@
 package com.sharedexpenses.repository.mysqlImp;
 
 import com.sharedexpenses.domain.Friend;
-import com.sharedexpenses.domain.FriendDTO;
+import com.sharedexpenses.domain.dto.FriendDTO;
 import com.sharedexpenses.repository.FriendRepository;
 import com.sharedexpenses.repository.mysqlImp.mappers.FriendMapper;
 import org.springframework.beans.factory.annotation.Autowired;

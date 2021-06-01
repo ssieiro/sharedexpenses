@@ -1,6 +1,7 @@
 package com.sharedexpenses.usecases;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,0 +1,56 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sharedexpenses.repository.mysqlImp.mappers.FriendsGroupMapper">
+
+
+    <select id="findAllGroups" resultMap="result-maps.friendsGroupResult">
+        SELECT * FROM friends_group
+    </select>
+
+    <select id="findGroupById" parameterType="long" resultMap="result-maps.friendsGroupResult">
+        SELECT * FROM friends_group WHERE ID = #{id}
+    </select>
+
+    <select id="findFriendsByGroup" parameterType="long" resultMap="result-maps.friendResult">
+        SELECT
+        friend.id as "friend_id",
+        friend.name as "friend_name",
+        friend.group_id as "friend_group_id",
+        friends_group.id as "group_id",
+        friends_group.name as "group_name"
+        FROM friend
+        INNER JOIN friends_group ON friend.group_id = friends_group.id
+        WHERE group_id = #{groupId}
+        ORDER BY friend.id ASC
+    </select>
+
+    <select id="findPaymentsByFriend" parameterType="long" resultMap="result-maps.paymentResult">
+        SELECT
+        payment.id             as "payment_id",
+        payment.concept        as "payment_concept",
+        payment.amount         as "payment_amount",
+        friend.id              as "friend_id",
+        friend.name            as "friend_name",
+        friend.group_id        as "friend_group_id",
+        friends_group.id       as "group_id",
+        friends_group.name     as "group_name",
+        payment.date           as "payment_date"
+        FROM payment
+        INNER JOIN friend ON payment.friend_id = friend.id
+        INNER JOIN friends_group ON friend.group_id = friends_group.id
+        WHERE friend_id = #{friendId}
+        ORDER BY payment.id ASC
+    </select>
+
+    <insert id="insertFriendsGroup" useGeneratedKeys="true" keyProperty="id" parameterType="FriendsGroup">
+        INSERT INTO friends_group(name)
+        VALUES (#{name})
+    </insert>
+
+    <delete id="deleteGroupById" parameterType="long">
+        DELETE FROM friends_group where id = #{id}
+    </delete>
+
+</mapper>

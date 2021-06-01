@@ -1,7 +1,7 @@
 package com.sharedexpenses.repository.mysqlImp.mappers;
 
 import com.sharedexpenses.domain.Payment;
-import com.sharedexpenses.domain.PaymentDTO;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

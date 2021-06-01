@@ -1,4 +1,4 @@
-package com.sharedexpenses.domain;
+package com.sharedexpenses.domain.dto;
 
 import java.util.Objects;
 

@@ -1,6 +1,7 @@
 package com.sharedexpenses.repository.mappers;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.repository.mysqlImp.mappers.PaymentMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.sharedexpenses.repository.mysqlImp;
 
 import com.sharedexpenses.domain.Payment;
-import com.sharedexpenses.domain.PaymentDTO;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.repository.PaymentRepository;
 import com.sharedexpenses.repository.mysqlImp.mappers.PaymentMapper;
 import org.springframework.beans.factory.annotation.Autowired;

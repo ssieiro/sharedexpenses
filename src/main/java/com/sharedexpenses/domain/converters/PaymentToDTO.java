@@ -1,7 +1,7 @@
 package com.sharedexpenses.domain.converters;
 
 import com.sharedexpenses.domain.Payment;
-import com.sharedexpenses.domain.PaymentDTO;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 
 public class PaymentToDTO {
     public static final PaymentDTO convert (Payment payment){

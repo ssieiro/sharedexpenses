@@ -1,7 +1,7 @@
 package com.sharedexpenses.repository;
 
 import com.sharedexpenses.domain.Friend;
-import com.sharedexpenses.domain.FriendDTO;
+import com.sharedexpenses.domain.dto.FriendDTO;
 
 import java.util.List;
 

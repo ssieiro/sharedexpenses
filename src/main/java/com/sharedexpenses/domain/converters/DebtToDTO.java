@@ -1,7 +1,7 @@
 package com.sharedexpenses.domain.converters;
 
 import com.sharedexpenses.domain.Debt;
-import com.sharedexpenses.domain.DebtDTO;
+import com.sharedexpenses.domain.dto.DebtDTO;
 
 public class DebtToDTO {
     public static final DebtDTO convert (Debt debt){

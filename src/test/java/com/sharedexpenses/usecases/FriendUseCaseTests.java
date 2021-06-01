@@ -2,6 +2,7 @@ package com.sharedexpenses.usecases;
 
 import com.sharedexpenses.domain.*;
 
+import com.sharedexpenses.domain.dto.FriendDTO;
 import com.sharedexpenses.repository.FriendRepository;
 import org.junit.jupiter.api.Test;
 

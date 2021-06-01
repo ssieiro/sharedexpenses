@@ -1,8 +1,8 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
-import com.sharedexpenses.domain.converters.FriendToDTO;
 import com.sharedexpenses.domain.converters.PaymentToDTO;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.usecases.PaymentUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -7,8 +7,9 @@
         <package name="com.sharedexpenses.domain"/>
     </typeAliases>
     <mappers>
-        <mapper resource="FriendsGroupMapper.xml"/>
-        <mapper resource="FriendMapper.xml"/>
-        <mapper resource="PaymentMapper.xml"/>
+        <mapper resource="friendsgroup-mapper.xml"/>
+        <mapper resource="friend-mapper.xml"/>
+        <mapper resource="payment-mapper.xml"/>
+        <mapper resource="result-maps.xml"/>
     </mappers>
 </configuration>

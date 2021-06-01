@@ -1,6 +1,7 @@
 package com.sharedexpenses.repository.mappers;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.dto.FriendDTO;
 import com.sharedexpenses.repository.mysqlImp.mappers.FriendMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

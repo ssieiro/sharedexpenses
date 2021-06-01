@@ -4,22 +4,7 @@
 
 <mapper namespace="com.sharedexpenses.repository.mysqlImp.mappers.PaymentMapper">
 
-    <resultMap type="Payment" id="paymentResult">
-        <id column="payment_id" property="id" javaType="long"/>
-        <result column="payment_concept" property="concept" javaType="string"/>
-        <result column="payment_amount" property="amount" javaType="BigDecimal"/>
-        <result column="payment_date" property="date" javaType="java.time.LocalDateTime"/>
-        <association property="friend" javaType="Friend">
-            <id column="friend_id" property="id" javaType="long"/>
-            <result column="friend_name" property="name" javaType="string"/>
-            <association property="friendsGroup" javaType="FriendsGroup">
-                <id column="group_id" property="id" javaType="long"/>
-                <result column="group_name" property="name" javaType="string"/>
-            </association>
-        </association>
-    </resultMap>
-
-    <select id="findAllPayments" resultMap="paymentResult">
+    <select id="findAllPayments" resultMap="result-maps.paymentResult">
         SELECT
         payment.id             as "payment_id",
         payment.concept        as "payment_concept",
@@ -36,7 +21,7 @@
         ORDER BY payment.id ASC
     </select>
 
-    <select id="findPaymentById" parameterType="long" resultMap="paymentResult">
+    <select id="findPaymentById" parameterType="long" resultMap="result-maps.paymentResult">
         SELECT
         payment.id             as "payment_id",
         payment.concept        as "payment_concept",

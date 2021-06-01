@@ -1,6 +1,7 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.dto.FriendDTO;
 import com.sharedexpenses.usecases.FriendUseCase;
 import org.junit.jupiter.api.Test;
 

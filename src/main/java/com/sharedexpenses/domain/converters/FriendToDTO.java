@@ -1,7 +1,7 @@
 package com.sharedexpenses.domain.converters;
 
 import com.sharedexpenses.domain.Friend;
-import com.sharedexpenses.domain.FriendDTO;
+import com.sharedexpenses.domain.dto.FriendDTO;
 
 public class FriendToDTO {
     public static final FriendDTO convert (Friend friend) {

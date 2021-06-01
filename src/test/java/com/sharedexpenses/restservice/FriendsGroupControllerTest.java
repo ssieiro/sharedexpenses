@@ -1,6 +1,10 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.dto.BalanceDTO;
+import com.sharedexpenses.domain.dto.DebtDTO;
+import com.sharedexpenses.domain.dto.FriendDTO;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.usecases.FriendsGroupUseCase;
 import org.junit.jupiter.api.Test;
 

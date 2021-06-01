@@ -1,7 +1,7 @@
 package com.sharedexpenses.repository;
 
 import com.sharedexpenses.domain.Payment;
-import com.sharedexpenses.domain.PaymentDTO;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 
 import java.util.List;
 

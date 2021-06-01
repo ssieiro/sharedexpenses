@@ -1,7 +1,7 @@
 package com.sharedexpenses.repository.mysqlImp.mappers;
 
 import com.sharedexpenses.domain.Friend;
-import com.sharedexpenses.domain.FriendDTO;
+import com.sharedexpenses.domain.dto.FriendDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -1,11 +1,11 @@
 package com.sharedexpenses.usecases;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.dto.FriendDTO;
 import com.sharedexpenses.repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

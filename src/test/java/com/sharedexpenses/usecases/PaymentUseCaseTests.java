@@ -1,6 +1,7 @@
 package com.sharedexpenses.usecases;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.repository.PaymentRepository;
 import org.junit.jupiter.api.Test;
 
