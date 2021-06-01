@@ -23,7 +23,7 @@ class PaymentControllerTest {
 
     @Test
     public void shouldGetAllPayments() {
-        List<Payment> expectedPayments = List.of(new Payment(1, "pago1", BigDecimal.valueOf(20.0), new Friend(2, "Paco", new FriendsGroup("Grupo prueba")), date));
+        List<Payment> expectedPayments = List.of(new Payment(1, "pago1", BigDecimal.valueOf(20.0), new Friend(2, "Paco", new FriendsGroup(1,"Grupo prueba")), date));
         List<PaymentDTO> expectedPaymentsDTO = List.of(new PaymentDTO(1, "pago1", BigDecimal.valueOf(20.0), 2, date));
         when(paymentUseCase.getAllPayments()).thenReturn(expectedPayments);
         List<PaymentDTO> paymentsList = paymentController.getAllPayments();
@@ -33,7 +33,7 @@ class PaymentControllerTest {
 
     @Test
     public void shouldAddPayment(){
-        Payment expectedPayment = new Payment(1, "pago1", BigDecimal.valueOf(20.0), new Friend (1, "Sonia", new FriendsGroup("Grupo prueba", 1)), date);
+        Payment expectedPayment = new Payment(1, "pago1", BigDecimal.valueOf(20.0), new Friend (1, "Sonia", new FriendsGroup(1,"Grupo prueba")), date);
         PaymentDTO expectedPaymentDTO = new PaymentDTO(1, "pago1", BigDecimal.valueOf(20.0), 1, date);
         when(paymentUseCase.addPayment(expectedPaymentDTO)).thenReturn(expectedPayment);
         PaymentDTO paymentDTO = paymentController.addPayment(expectedPaymentDTO);

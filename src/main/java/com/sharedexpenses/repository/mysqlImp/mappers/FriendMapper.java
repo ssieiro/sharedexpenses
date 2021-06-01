@@ -1,7 +1,6 @@
 package com.sharedexpenses.repository.mysqlImp.mappers;
 
 import com.sharedexpenses.domain.Friend;
-import com.sharedexpenses.domain.dto.FriendDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public interface FriendMapper {
     Friend findFriendById(long id);
 
     //INSERT
-    void insertFriend(FriendDTO friend);
+    void insertFriend(Friend friend);
 
     //DELETE
     void deleteFriendById(long id);

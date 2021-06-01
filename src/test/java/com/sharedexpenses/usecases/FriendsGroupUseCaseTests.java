@@ -25,7 +25,7 @@ public class FriendsGroupUseCaseTests {
 
     @Test
     void shouldGetGroupById() {
-        FriendsGroup expectedGroup = new FriendsGroup("Grupo1", 1);
+        FriendsGroup expectedGroup = new FriendsGroup(1,"Grupo1");
         when(friendsGroupRepository.getGroupById(1)).thenReturn(expectedGroup);
         FriendsGroup group = friendsGroupUseCase.getGroupById(1);
         assertThat(group, is(expectedGroup));
@@ -33,7 +33,7 @@ public class FriendsGroupUseCaseTests {
 
     @Test
     public void shouldGetFriendsByGroup() {
-        List<Friend> expectedFriends = List.of(new Friend(1, "Paco", new FriendsGroup("Grupo test", 2)));
+        List<Friend> expectedFriends = List.of(new Friend(1, "Paco", new FriendsGroup(1, "Grupo test")));
         when(friendsGroupRepository.getFriendsByGroup(1)).thenReturn(expectedFriends);
         List<Friend> friendsList = friendsGroupUseCase.getFriendsByGroup(1);
         assertThat(friendsList, is(expectedFriends));
@@ -42,7 +42,7 @@ public class FriendsGroupUseCaseTests {
     @Test
     public void shouldGetPaymentsByGroup() {
         List<Payment> expectedPayments = List.of(new Payment(1, "pago1", BigDecimal.valueOf(20.0),
-                new Friend(1, "Paco", new FriendsGroup("Grupo test", 2)), LocalDateTime.now()));
+                new Friend(1, "Paco", new FriendsGroup(1,"Grupo test")), LocalDateTime.now()));
         when(friendsGroupRepository.getPaymentsByGroup(1)).thenReturn(expectedPayments);
         List<Payment> paymentsList = friendsGroupUseCase.getPaymentsByGroup(1);
         assertThat(paymentsList, is(expectedPayments));
@@ -51,7 +51,7 @@ public class FriendsGroupUseCaseTests {
 
     @Test
     public void shouldAddFriendsGroup() {
-        FriendsGroup expectedGroup = new FriendsGroup("Grupo2", 1);
+        FriendsGroup expectedGroup = new FriendsGroup(1,"Grupo2");
         when(friendsGroupRepository.addGroup(expectedGroup)).thenReturn(expectedGroup);
         FriendsGroup group = friendsGroupUseCase.addGroup(expectedGroup);
         assertThat(group, is(expectedGroup));

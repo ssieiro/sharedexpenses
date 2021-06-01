@@ -22,11 +22,11 @@ class FriendsGroupControllerTest {
     private final FriendsGroupUseCase friendsGroupUseCase = mock(FriendsGroupUseCase.class);
     private final FriendsGroupController friendsGroupController = new FriendsGroupController(friendsGroupUseCase);
     private final LocalDateTime date = LocalDateTime.now();
-    private final FriendsGroup expectedGroup = new FriendsGroup("Grupo1", 1);
+    private final FriendsGroup expectedGroup = new FriendsGroup(1, "Grupo1");
     private final List<FriendDTO> expectedFriendsDTO = List.of(new FriendDTO(1, "Paco", 1));
-    private final List<Friend> expectedFriends = List.of(new Friend(1, "Paco", new FriendsGroup("prueba test", 1)));
-    private final Friend friendPaco = new Friend(2, "Paco", new FriendsGroup("Grupo test", 1));
-    private final Friend friendSonia = new Friend(1, "Sonia", new FriendsGroup("Grupo test", 1));
+    private final List<Friend> expectedFriends = List.of(new Friend(1, "Paco", new FriendsGroup(1, "prueba test")));
+    private final Friend friendPaco = new Friend(2, "Paco", new FriendsGroup(1,"Grupo test"));
+    private final Friend friendSonia = new Friend(1, "Sonia", new FriendsGroup(1, "Grupo test"));
     private final FriendDTO friendPacoDTO = new FriendDTO (2, "Paco", 1);
     private final FriendDTO friendSoniaDTO = new FriendDTO(1, "Sonia", 1);
 

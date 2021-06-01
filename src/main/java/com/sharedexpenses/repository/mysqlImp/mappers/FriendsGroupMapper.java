@@ -1,8 +1,6 @@
 package com.sharedexpenses.repository.mysqlImp.mappers;
 
-import com.sharedexpenses.domain.Friend;
 import com.sharedexpenses.domain.FriendsGroup;
-import com.sharedexpenses.domain.Payment;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

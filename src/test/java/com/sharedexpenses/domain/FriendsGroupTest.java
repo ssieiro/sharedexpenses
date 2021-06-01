@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class FriendsGroupTest {
-    FriendsGroup group = new FriendsGroup("Grupo de test", 1);
+    FriendsGroup group = new FriendsGroup(1,"Grupo de test");
 
     @Test
     public void shouldGetGroupName(){

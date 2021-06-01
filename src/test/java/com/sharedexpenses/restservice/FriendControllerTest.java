@@ -19,7 +19,7 @@ class FriendControllerTest {
 
     @Test
     public void shouldGetAllFriends() {
-        List<Friend> expectedFriends = List.of(new Friend(2, "Paco", new FriendsGroup("Grupo test", 1)));
+        List<Friend> expectedFriends = List.of(new Friend(2, "Paco", new FriendsGroup(1, "Grupo test")));
         List<FriendDTO> expectedFriendsDTO = List.of(new FriendDTO(2, "Paco", 1));
         when(friendUseCase.getAllFriends()).thenReturn(expectedFriends);
         List<FriendDTO> friendsList = friendController.getAllFriends();
@@ -29,7 +29,7 @@ class FriendControllerTest {
     @Test
     public void shouldAddFriend() {
         FriendDTO expectedfriendDTO = new FriendDTO (2, "Paco", 1);
-        Friend friend = new Friend (2, "Paco", new FriendsGroup("Grupo prueba", 1));
+        Friend friend = new Friend (2, "Paco", new FriendsGroup(1, "Grupo prueba"));
         when(friendUseCase.addFriend(expectedfriendDTO)).thenReturn(friend);
         FriendDTO friendDTO = friendController.addFriend(expectedfriendDTO);
         assertThat(friendDTO, is(expectedfriendDTO));

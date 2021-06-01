@@ -19,8 +19,8 @@ public class FriendsGroupRepositoryTest {
     private final FriendsGroupMapper friendsGroupMapper = mock(FriendsGroupMapper.class);
     private final FriendsGroupRepository friendsGroupRepository = new MysqlFriendsGroupRepositoryImpl(friendsGroupMapper);
     private final LocalDateTime date = LocalDateTime.now();
-    private final List<FriendsGroup> expectedGroups = List.of(new FriendsGroup("Grupo1", 1));
-    private final FriendsGroup expectedGroup = new FriendsGroup("Grupo1", 1);
+    private final List<FriendsGroup> expectedGroups = List.of(new FriendsGroup(1,"Grupo1"));
+    private final FriendsGroup expectedGroup = new FriendsGroup(1, "Grupo1");
     private final List<Friend> expectedFriends = List.of(new Friend(1, "Paco", expectedGroup));
     private final List<Payment> expectedPayments = List.of(new Payment(1, "pago1", BigDecimal.valueOf(20.0), new Friend(2, "Sonia", expectedGroup), date));
 
@@ -43,6 +43,14 @@ public class FriendsGroupRepositoryTest {
         when(friendsGroupMapper.findFriendsByGroup(1)).thenReturn(expectedFriends);
         List<Friend> friendsList = friendsGroupRepository.getFriendsByGroup(1);
         assertThat(friendsList, is(expectedFriends));
+    }
+
+    @Test
+    public void shouldGetPaymentsByFriend() {
+        when(friendsGroupMapper.findFriendsByGroup(1)).thenReturn(expectedFriends);
+        when(friendsGroupMapper.findPaymentsByFriend(1)).thenReturn(expectedPayments);
+        List<Payment> paymentList = friendsGroupRepository.getPaymentsByGroup(1);
+        assertThat(paymentList, is(expectedPayments));
     }
 
 }

@@ -38,9 +38,9 @@
         WHERE payment.id = #{id}
     </select>
 
-    <insert id="insertPayment" useGeneratedKeys="true" keyProperty="id" parameterType="PaymentDTO">
+    <insert id="insertPayment" useGeneratedKeys="true" keyProperty="id" parameterType="Payment">
         INSERT INTO payment(concept, amount, date, friend_id)
-        VALUES (#{concept}, #{amount}, #{date}, #{friendId})
+        VALUES (#{concept}, #{amount}, #{date}, #{friend.id})
     </insert>
 
     <delete id="deletePaymentById" parameterType="long">

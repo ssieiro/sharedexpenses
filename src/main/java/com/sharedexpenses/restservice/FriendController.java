@@ -1,7 +1,7 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
-import com.sharedexpenses.domain.converters.FriendToDTO;
+import com.sharedexpenses.domain.converters.FriendConverter;
 import com.sharedexpenses.domain.dto.FriendDTO;
 import com.sharedexpenses.usecases.FriendUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class FriendController {
         List<Friend> friends = friendUseCase.getAllFriends();
         List<FriendDTO> friendsDTO = new ArrayList<FriendDTO>();
         friends.forEach(friend -> {
-            friendsDTO.add(FriendToDTO.convert(friend));
+            friendsDTO.add(FriendConverter.toDTO(friend));
         });
         return friendsDTO;
     }
@@ -36,7 +36,7 @@ public class FriendController {
     @PostMapping("/friends")
     public FriendDTO addFriend (@RequestBody FriendDTO friendDTO) {
         Friend friend = friendUseCase.addFriend(friendDTO);
-        return FriendToDTO.convert(friend);
+        return FriendConverter.toDTO(friend);
     }
 
     //DELETE

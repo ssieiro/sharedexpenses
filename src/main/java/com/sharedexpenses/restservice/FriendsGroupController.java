@@ -1,10 +1,10 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
-import com.sharedexpenses.domain.converters.BalanceToDTO;
-import com.sharedexpenses.domain.converters.DebtToDTO;
-import com.sharedexpenses.domain.converters.FriendToDTO;
-import com.sharedexpenses.domain.converters.PaymentToDTO;
+import com.sharedexpenses.domain.converters.BalanceConverter;
+import com.sharedexpenses.domain.converters.DebtConverter;
+import com.sharedexpenses.domain.converters.FriendConverter;
+import com.sharedexpenses.domain.converters.PaymentConverter;
 import com.sharedexpenses.domain.dto.BalanceDTO;
 import com.sharedexpenses.domain.dto.DebtDTO;
 import com.sharedexpenses.domain.dto.FriendDTO;
@@ -42,7 +42,7 @@ public class FriendsGroupController {
         List<Friend> friends = friendsGroupUseCase.getFriendsByGroup(groupId);
         List<FriendDTO> friendsDTO = new ArrayList<FriendDTO>();
         friends.forEach(friend -> {
-            friendsDTO.add(FriendToDTO.convert(friend));
+            friendsDTO.add(FriendConverter.toDTO(friend));
         });
         return friendsDTO;
     }
@@ -52,7 +52,7 @@ public class FriendsGroupController {
         List<Payment> payments = friendsGroupUseCase.getPaymentsByGroup(groupId);
         List<PaymentDTO> paymentsDTO = new ArrayList<>();
         payments.forEach(payment -> {
-            paymentsDTO.add(PaymentToDTO.convert(payment));
+            paymentsDTO.add(PaymentConverter.toDTO(payment));
         });
         return paymentsDTO;
     }
@@ -63,7 +63,7 @@ public class FriendsGroupController {
         List<Balance> balances = friendsGroupUseCase.calculateBalance(groupId);
         List<BalanceDTO> balancesDTO = new ArrayList<>();
         balances.forEach(balance -> {
-            balancesDTO.add(BalanceToDTO.convert(balance));
+            balancesDTO.add(BalanceConverter.toDTO(balance));
         });
         return balancesDTO;
     }
@@ -73,7 +73,7 @@ public class FriendsGroupController {
         List<Debt> debts = friendsGroupUseCase.calculateDebts(groupId);
         List<DebtDTO> debtsDTO = new ArrayList<>();
         debts.forEach(debt -> {
-            debtsDTO.add(DebtToDTO.convert(debt));
+            debtsDTO.add(DebtConverter.toDTO(debt));
         });
         return debtsDTO;
     }

@@ -1,7 +1,6 @@
 package com.sharedexpenses.repository.mappers;
 
 import com.sharedexpenses.domain.*;
-import com.sharedexpenses.domain.dto.FriendDTO;
 import com.sharedexpenses.repository.mysqlImp.mappers.FriendMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class FriendMapperIT {
     //INSERT AND DELETE
     @Test
     public void shouldInsertAndDeleteFriend(){
-        friendMapper.insertFriend(new FriendDTO(1, "Friend test", 1));
+        friendMapper.insertFriend(new Friend(1, "Friend test", new FriendsGroup(1, "Prueba")));
         List<Friend> friendsAfterInsert = friendMapper.findAllFriends();
         assertThat(friendsAfterInsert.size(), is(6));
         friendMapper.deleteFriendById(6);

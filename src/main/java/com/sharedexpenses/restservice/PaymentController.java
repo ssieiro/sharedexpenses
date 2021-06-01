@@ -1,7 +1,7 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
-import com.sharedexpenses.domain.converters.PaymentToDTO;
+import com.sharedexpenses.domain.converters.PaymentConverter;
 import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.usecases.PaymentUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class PaymentController {
         List<Payment> payments = paymentUseCase.getAllPayments();
         List<PaymentDTO> paymentsDTO = new ArrayList<>();
         payments.forEach(payment -> {
-            paymentsDTO.add(PaymentToDTO.convert(payment));
+            paymentsDTO.add(PaymentConverter.toDTO(payment));
         });
         return paymentsDTO;
     }
@@ -36,7 +36,7 @@ public class PaymentController {
     @PostMapping("/payments")
     public PaymentDTO addPayment (@RequestBody PaymentDTO paymentDTO) {
         Payment payment = paymentUseCase.addPayment(paymentDTO);
-        return PaymentToDTO.convert(payment);
+        return PaymentConverter.toDTO(payment);
     }
 
     //DELETE

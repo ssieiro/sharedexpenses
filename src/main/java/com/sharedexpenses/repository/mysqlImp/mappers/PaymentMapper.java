@@ -1,7 +1,6 @@
 package com.sharedexpenses.repository.mysqlImp.mappers;
 
 import com.sharedexpenses.domain.Payment;
-import com.sharedexpenses.domain.dto.PaymentDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public interface PaymentMapper {
     Payment findPaymentById(long id);
 
     //INSERT
-    void insertPayment(PaymentDTO payment);
+    void insertPayment(Payment payment);
 
     //DELETE
     void deletePaymentById(long id);

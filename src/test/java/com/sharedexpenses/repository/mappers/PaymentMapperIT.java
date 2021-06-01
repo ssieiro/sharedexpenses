@@ -1,7 +1,6 @@
 package com.sharedexpenses.repository.mappers;
 
 import com.sharedexpenses.domain.*;
-import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.repository.mysqlImp.mappers.PaymentMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,9 @@ public class PaymentMapperIT {
     //INSERT AND DELETE
     @Test
     public void shouldInsertAndDeletePayment(){
-        paymentMapper.insertPayment(new PaymentDTO(1, "Payment test", BigDecimal.valueOf(20), 1, LocalDateTime.now()));
+        paymentMapper.insertPayment(new Payment(1, "Payment test", BigDecimal.valueOf(20),
+                new Friend(1, "Sonia",
+                new FriendsGroup(1, "Prueba")), LocalDateTime.now()));
         List<Payment> paymentssAfterInsert = paymentMapper.findAllPayments();
         assertThat(paymentssAfterInsert.size(), is(3));
         paymentMapper.deletePaymentById(3);

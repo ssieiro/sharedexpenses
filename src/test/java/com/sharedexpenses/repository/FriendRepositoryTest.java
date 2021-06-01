@@ -17,7 +17,6 @@ public class FriendRepositoryTest {
     private final FriendMapper friendMapper = mock(FriendMapper.class);
     private final FriendRepository friendRepository = new MysqlFriendRepositoryImpl(friendMapper);
 
-
     @Test
     public void shouldGetAllFriends() {
         List<Friend> expectedFriends = List.of(new Friend(1, "Paco",new FriendsGroup("Grupo test")));

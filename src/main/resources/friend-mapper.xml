@@ -4,7 +4,6 @@
 
 <mapper namespace="com.sharedexpenses.repository.mysqlImp.mappers.FriendMapper">
 
-
     <select id="findAllFriends" resultMap="result-maps.friendResult">
         SELECT
         friend.id as "friend_id",
@@ -29,10 +28,9 @@
         WHERE friend.id = #{id}
     </select>
 
-
-    <insert id="insertFriend" useGeneratedKeys="true" keyProperty="id" parameterType="FriendDTO">
+    <insert id="insertFriend" useGeneratedKeys="true" keyProperty="id" parameterType="Friend">
         INSERT INTO friend (name, group_id)
-        VALUES (#{name},#{groupId})
+        VALUES (#{name},#{friendsGroup.id})
     </insert>
 
     <delete id="deleteFriendById" parameterType="long">

@@ -1,7 +1,6 @@
 package com.sharedexpenses.repository.mysqlImp;
 
 import com.sharedexpenses.domain.Payment;
-import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.repository.PaymentRepository;
 import com.sharedexpenses.repository.mysqlImp.mappers.PaymentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class MysqlPaymentRepositoryImpl implements PaymentRepository {
 
     //ADD
     @Override
-    public Payment addPayment(PaymentDTO payment) {
+    public Payment addPayment(Payment payment) {
         paymentMapper.insertPayment(payment);
         return paymentMapper.findPaymentById(payment.getId());
     }
