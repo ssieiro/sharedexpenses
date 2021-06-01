@@ -3,15 +3,15 @@ package com.sharedexpenses.domain;
 import java.util.Objects;
 
 public class Friend {
-    private String name;
-    private long groupId;
     private long id;
+    private String name;
+    private FriendsGroup friendsGroup;
 
     public Friend(){}
 
-    public Friend(String name, long groupId, long id) {
+    public Friend(long id, String name, FriendsGroup friendsGroup) {
         this.name = name;
-        this.groupId = groupId;
+        this.friendsGroup = friendsGroup;
         this.id = id;
     }
 
@@ -23,20 +23,16 @@ public class Friend {
         this.name = name;
     }
 
-    public long getGroupId() {
-        return groupId;
+    public FriendsGroup getFriendsGroup() {
+        return friendsGroup;
     }
 
-    public void setGroupId(long groupId) {
-        this.groupId = groupId;
+    public void setFriendsGroup(FriendsGroup friendsGroup) {
+        this.friendsGroup = friendsGroup;
     }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     @Override

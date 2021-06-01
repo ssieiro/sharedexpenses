@@ -1,6 +1,9 @@
 package com.sharedexpenses.usecases;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.converters.PaymentConverter;
+import com.sharedexpenses.domain.dto.PaymentDTO;
+import com.sharedexpenses.repository.FriendRepository;
 import com.sharedexpenses.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +13,12 @@ import java.util.List;
 public class PaymentUseCaseImpl implements PaymentUseCase {
 
     private final PaymentRepository paymentRepository;
+    private final FriendRepository friendRepository;
 
     @Autowired
-    public PaymentUseCaseImpl(PaymentRepository paymentRepository){
+    public PaymentUseCaseImpl(PaymentRepository paymentRepository, FriendRepository friendRepository){
         this.paymentRepository = paymentRepository;
+        this.friendRepository = friendRepository;
     }
 
     // GET ALL
@@ -22,7 +27,11 @@ public class PaymentUseCaseImpl implements PaymentUseCase {
 
     //ADD
     @Override
-    public Payment addPayment(Payment payment){ return paymentRepository.addPayment(payment); }
+    public Payment addPayment(PaymentDTO paymentDTO){
+        Friend friend = friendRepository.getFriendById(paymentDTO.getFriendId());
+        Payment payment = PaymentConverter.toPayment(paymentDTO, friend);
+        return paymentRepository.addPayment(payment);
+    }
 
     //DELETE
     @Override

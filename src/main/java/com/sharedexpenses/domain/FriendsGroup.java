@@ -11,7 +11,7 @@ public class FriendsGroup {
         this.name = name;
     }
 
-    public FriendsGroup(String name, int id) {
+    public FriendsGroup(int id, String name) {
         this.name = name;
         this.id = id;
     }

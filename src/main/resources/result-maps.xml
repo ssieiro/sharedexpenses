@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="result-maps">
+
+    <resultMap type="FriendsGroup" id="friendsGroupResult">
+        <id column="id" property="id" javaType="long"/>
+        <result column="name" property="name" javaType="string"/>
+    </resultMap>
+
+    <resultMap type="Friend" id="friendResult">
+        <id column="friend_id" property="id" javaType="long"/>
+        <result column="friend_name" property="name" javaType="string"/>
+        <association property="friendsGroup" javaType="FriendsGroup">
+            <id column="group_id" property="id" javaType="long"/>
+            <result column="group_name" property="name" javaType="string"/>
+        </association>
+    </resultMap>
+
+    <resultMap type="Payment" id="paymentResult">
+        <id column="payment_id" property="id" javaType="long"/>
+        <result column="payment_concept" property="concept" javaType="string"/>
+        <result column="payment_amount" property="amount" javaType="BigDecimal"/>
+        <result column="payment_date" property="date" javaType="java.time.LocalDateTime"/>
+        <association property="friend" javaType="Friend">
+            <id column="friend_id" property="id" javaType="long"/>
+            <result column="friend_name" property="name" javaType="string"/>
+            <association property="friendsGroup" javaType="FriendsGroup">
+                <id column="group_id" property="id" javaType="long"/>
+                <result column="group_name" property="name" javaType="string"/>
+            </association>
+        </association>
+    </resultMap>
+
+</mapper>

@@ -1,10 +1,13 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.converters.FriendConverter;
+import com.sharedexpenses.domain.dto.FriendDTO;
 import com.sharedexpenses.usecases.FriendUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,15 +23,20 @@ public class FriendController {
 
     // GET ALL
     @GetMapping("/friends")
-    public List<Friend> getAllFriends(){
-        return friendUseCase.getAllFriends();
+    public List<FriendDTO> getAllFriends(){
+        List<Friend> friends = friendUseCase.getAllFriends();
+        List<FriendDTO> friendsDTO = new ArrayList<FriendDTO>();
+        friends.forEach(friend -> {
+            friendsDTO.add(FriendConverter.toDTO(friend));
+        });
+        return friendsDTO;
     }
-
 
     //POST
     @PostMapping("/friends")
-    public Friend addFriend (@RequestBody Friend friend) {
-        return friendUseCase.addFriend(friend);
+    public FriendDTO addFriend (@RequestBody FriendDTO friendDTO) {
+        Friend friend = friendUseCase.addFriend(friendDTO);
+        return FriendConverter.toDTO(friend);
     }
 
     //DELETE

@@ -1,23 +1,23 @@
-package com.sharedexpenses.domain;
+package com.sharedexpenses.domain.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Payment {
+public class PaymentDTO {
     private long id;
     private String concept;
     private BigDecimal amount;
-    private Friend friend;
+    private long friendId;
     private LocalDateTime date;
 
-    public Payment(){}
+    public PaymentDTO(){}
 
-    public Payment(long id, String concept, BigDecimal amount, Friend friend, LocalDateTime date){
+    public PaymentDTO(long id, String concept, BigDecimal amount, long friendId, LocalDateTime date){
         this.id = id;
         this.concept = concept;
         this.amount = amount;
-        this.friend = friend;
+        this.friendId = friendId;
         this.date = date;
     }
 
@@ -41,12 +41,12 @@ public class Payment {
         this.amount = amount;
     }
 
-    public Friend getFriend() {
-        return friend;
+    public long getFriendId() {
+        return friendId;
     }
 
-    public void setFriend(Friend friend) {
-        this.friend = friend;
+    public void setFriendId(long friendId) {
+        this.friendId = friendId;
     }
 
     public LocalDateTime getDate() {
@@ -61,12 +61,23 @@ public class Payment {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Payment payment = (Payment) o;
-        return id == payment.id && concept.equals(payment.concept) && amount.equals(payment.amount) && friend.equals(payment.friend) && date.equals(payment.date);
+        PaymentDTO payment = (PaymentDTO) o;
+        return id == payment.id && friendId == payment.friendId && concept.equals(payment.concept) && amount.equals(payment.amount) && date.equals(payment.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, concept, amount, friend, date);
+        return Objects.hash(id, concept, amount, friendId, date);
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", concept='" + concept + '\'' +
+                ", amount=" + amount +
+                ", friendID=" + friendId +
+                ", date=" + date +
+                '}';
     }
 }

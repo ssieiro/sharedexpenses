@@ -1,10 +1,19 @@
 package com.sharedexpenses.restservice;
 
 import com.sharedexpenses.domain.*;
+import com.sharedexpenses.domain.converters.BalanceConverter;
+import com.sharedexpenses.domain.converters.DebtConverter;
+import com.sharedexpenses.domain.converters.FriendConverter;
+import com.sharedexpenses.domain.converters.PaymentConverter;
+import com.sharedexpenses.domain.dto.BalanceDTO;
+import com.sharedexpenses.domain.dto.DebtDTO;
+import com.sharedexpenses.domain.dto.FriendDTO;
+import com.sharedexpenses.domain.dto.PaymentDTO;
 import com.sharedexpenses.usecases.FriendsGroupUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,17 +38,45 @@ public class FriendsGroupController {
     public FriendsGroup getGroupById(@PathVariable long id){return friendsGroupUseCase.getGroupById(id);}
 
     @GetMapping("groups/{groupId}/friends")
-    public List<Friend> getFriendsByGroup(@PathVariable long groupId){return friendsGroupUseCase.getFriendsByGroup(groupId);}
+    public List<FriendDTO> getFriendsByGroup(@PathVariable long groupId){
+        List<Friend> friends = friendsGroupUseCase.getFriendsByGroup(groupId);
+        List<FriendDTO> friendsDTO = new ArrayList<FriendDTO>();
+        friends.forEach(friend -> {
+            friendsDTO.add(FriendConverter.toDTO(friend));
+        });
+        return friendsDTO;
+    }
 
     @GetMapping("groups/{groupId}/payments")
-    public List<Payment> getPaymentsByGroup(@PathVariable long groupId){return friendsGroupUseCase.getPaymentsByGroup(groupId); }
+    public List<PaymentDTO> getPaymentsByGroup(@PathVariable long groupId){
+        List<Payment> payments = friendsGroupUseCase.getPaymentsByGroup(groupId);
+        List<PaymentDTO> paymentsDTO = new ArrayList<>();
+        payments.forEach(payment -> {
+            paymentsDTO.add(PaymentConverter.toDTO(payment));
+        });
+        return paymentsDTO;
+    }
 
     //GET BALANCE AND DEBT
     @GetMapping("groups/{groupId}/balance")
-    public List<Balance> calculateBalance(@PathVariable long groupId){return friendsGroupUseCase.calculateBalance(groupId);}
+    public List<BalanceDTO> calculateBalance(@PathVariable long groupId){
+        List<Balance> balances = friendsGroupUseCase.calculateBalance(groupId);
+        List<BalanceDTO> balancesDTO = new ArrayList<>();
+        balances.forEach(balance -> {
+            balancesDTO.add(BalanceConverter.toDTO(balance));
+        });
+        return balancesDTO;
+    }
 
     @GetMapping("groups/{groupId}/debts")
-    public List<Debt> calculateDebts(@PathVariable long groupId){return friendsGroupUseCase.calculateDebts(groupId);}
+    public List<DebtDTO> calculateDebts(@PathVariable long groupId){
+        List<Debt> debts = friendsGroupUseCase.calculateDebts(groupId);
+        List<DebtDTO> debtsDTO = new ArrayList<>();
+        debts.forEach(debt -> {
+            debtsDTO.add(DebtConverter.toDTO(debt));
+        });
+        return debtsDTO;
+    }
 
     //POST
     @PostMapping("/groups")

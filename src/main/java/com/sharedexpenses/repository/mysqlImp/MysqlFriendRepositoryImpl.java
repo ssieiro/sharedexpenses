@@ -22,11 +22,15 @@ public class MysqlFriendRepositoryImpl implements FriendRepository {
     @Override
     public List<Friend> getAllFriends() { return friendMapper.findAllFriends(); }
 
+    //GET BY ID
+    @Override
+    public Friend getFriendById(long friendId) { return friendMapper.findFriendById(friendId); }
+
     //ADD
     @Override
     public Friend addFriend(Friend friend) {
         friendMapper.insertFriend(friend);
-        return friendMapper.findFriendById(friend.getId());
+        return getFriendById(friend.getId());
     }
 
     //DELETE

@@ -1,6 +1,7 @@
 package com.sharedexpenses.repository;
 
 import com.sharedexpenses.domain.Friend;
+import com.sharedexpenses.domain.FriendsGroup;
 import com.sharedexpenses.repository.mysqlImp.MysqlFriendRepositoryImpl;
 import com.sharedexpenses.repository.mysqlImp.mappers.FriendMapper;
 import org.junit.jupiter.api.Test;
@@ -16,10 +17,9 @@ public class FriendRepositoryTest {
     private final FriendMapper friendMapper = mock(FriendMapper.class);
     private final FriendRepository friendRepository = new MysqlFriendRepositoryImpl(friendMapper);
 
-
     @Test
     public void shouldGetAllFriends() {
-        List<Friend> expectedFriends = List.of(new Friend("Paco",1, 2));
+        List<Friend> expectedFriends = List.of(new Friend(1, "Paco",new FriendsGroup("Grupo test")));
         when(friendMapper.findAllFriends()).thenReturn(expectedFriends);
         List<Friend> friendsList = friendRepository.getAllFriends();
         assertThat(friendsList, is(expectedFriends));

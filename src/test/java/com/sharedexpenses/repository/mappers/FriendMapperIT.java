@@ -11,6 +11,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+
 @SpringBootTest
 public class FriendMapperIT {
 
@@ -38,7 +39,7 @@ public class FriendMapperIT {
     //INSERT AND DELETE
     @Test
     public void shouldInsertAndDeleteFriend(){
-        friendMapper.insertFriend(new Friend("Friend test", 1, 1));
+        friendMapper.insertFriend(new Friend(1, "Friend test", new FriendsGroup(1, "Prueba")));
         List<Friend> friendsAfterInsert = friendMapper.findAllFriends();
         assertThat(friendsAfterInsert.size(), is(6));
         friendMapper.deleteFriendById(6);

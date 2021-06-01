@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 @Component
 public class DefaultBalanceCalculator implements BalanceCalculator {
     public List<Balance> calculateBalance(List<Payment> payments, List<Friend> friends) {
@@ -29,11 +28,7 @@ public class DefaultBalanceCalculator implements BalanceCalculator {
     }
 
     private BigDecimal calculateTotalAmount(List<Payment> payments) {
-        List<BigDecimal> amounts = new ArrayList<>();
-        payments.forEach(payment -> {
-            amounts.add(payment.getAmount());
-        });
-        return amounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+        return payments.stream().map(Payment::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     private BigDecimal calculateDebtByFriend(Friend friendToCompare, List<Payment> payments, List<Friend> friends) {
@@ -45,7 +40,7 @@ public class DefaultBalanceCalculator implements BalanceCalculator {
             List<BigDecimal> paymentsByFriend = new ArrayList<>();
 
             payments.forEach(payment -> {
-                if (payment.getFriendId() == friendToCompareId) {
+                if (payment.getFriend().getId() == friendToCompareId) {
                     paymentsByFriend.add(payment.getAmount());
                 }
             });
