@@ -23,6 +23,7 @@
 	<description>Autentia shared expenses project</description>
 	<properties>
 		<java.version>11</java.version>
+		<mainClass>sharedexpenses.SharedExpensesApplication</mainClass>
 	</properties>
 
 </project>

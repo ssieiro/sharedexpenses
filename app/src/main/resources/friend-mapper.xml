@@ -2,7 +2,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="app.repository.mysqlImp.mappers.FriendMapper">
+<mapper namespace="sharedexpenses.app.repository.mysqlImp.mappers.FriendMapper">
 
     <select id="findAllFriends" resultMap="result-maps.friendResult">
         SELECT
