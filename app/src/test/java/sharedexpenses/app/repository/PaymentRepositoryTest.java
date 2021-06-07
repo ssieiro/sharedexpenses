@@ -1,6 +1,5 @@
 package sharedexpenses.app.repository;
 
-
 import sharedexpenses.app.repository.mysqlImp.MysqlPaymentRepositoryImpl;
 import sharedexpenses.app.repository.mysqlImp.mappers.PaymentMapper;
 import sharedexpenses.domain.Friend;

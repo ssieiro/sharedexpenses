@@ -1,9 +1,9 @@
 package sharedexpenses.app.restservice;
 
+import sharedexpenses.app.usecases.FriendUseCase;
 import sharedexpenses.domain.Friend;
 import sharedexpenses.domain.converters.FriendConverter;
 import sharedexpenses.domain.dto.FriendDTO;
-import sharedexpenses.app.usecases.FriendUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

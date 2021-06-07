@@ -18,7 +18,6 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-
 class FriendsGroupControllerTest {
     private final FriendsGroupUseCase friendsGroupUseCase = mock(FriendsGroupUseCase.class);
     private final FriendsGroupController friendsGroupController = new FriendsGroupController(friendsGroupUseCase);

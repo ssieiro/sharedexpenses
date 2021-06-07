@@ -1,6 +1,5 @@
 package sharedexpenses.domain;
 
-import sharedexpenses.domain.*;
 import sharedexpenses.domain.defaultcalculators.DefaultBalanceCalculator;
 import sharedexpenses.domain.defaultcalculators.DefaultDebtCalculator;
 import org.hamcrest.MatcherAssert;

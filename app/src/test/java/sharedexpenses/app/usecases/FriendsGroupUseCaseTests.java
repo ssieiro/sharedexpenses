@@ -16,7 +16,6 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-
 public class FriendsGroupUseCaseTests {
     private final FriendsGroupRepository friendsGroupRepository = mock(FriendsGroupRepository.class);
     private final BalanceCalculator balanceCalculator = new DefaultBalanceCalculator();

@@ -1,6 +1,7 @@
 package sharedexpenses.app.restservice;
 
 
+import sharedexpenses.app.usecases.FriendsGroupUseCase;
 import sharedexpenses.domain.*;
 import sharedexpenses.domain.converters.BalanceConverter;
 import sharedexpenses.domain.converters.DebtConverter;
@@ -10,7 +11,6 @@ import sharedexpenses.domain.dto.BalanceDTO;
 import sharedexpenses.domain.dto.DebtDTO;
 import sharedexpenses.domain.dto.FriendDTO;
 import sharedexpenses.domain.dto.PaymentDTO;
-import sharedexpenses.app.usecases.FriendsGroupUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

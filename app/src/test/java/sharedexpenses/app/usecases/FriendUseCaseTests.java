@@ -15,7 +15,6 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-
 public class FriendUseCaseTests {
     private final FriendRepository friendRepository = mock(FriendRepository.class);
     private final FriendsGroupRepository friendsGroupRepository = mock(FriendsGroupRepository.class);

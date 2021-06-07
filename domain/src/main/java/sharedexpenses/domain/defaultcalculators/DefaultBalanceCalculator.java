@@ -1,7 +1,7 @@
 package sharedexpenses.domain.defaultcalculators;
 
-import sharedexpenses.domain.BalanceCalculator;
 import sharedexpenses.domain.Balance;
+import sharedexpenses.domain.BalanceCalculator;
 import sharedexpenses.domain.Friend;
 import sharedexpenses.domain.Payment;
 import org.springframework.stereotype.Component;
