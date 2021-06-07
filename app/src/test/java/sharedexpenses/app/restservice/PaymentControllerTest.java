@@ -1,10 +1,10 @@
 package sharedexpenses.app.restservice;
 
+import sharedexpenses.app.usecases.PaymentUseCase;
 import sharedexpenses.domain.Friend;
 import sharedexpenses.domain.FriendsGroup;
 import sharedexpenses.domain.Payment;
 import sharedexpenses.domain.dto.PaymentDTO;
-import sharedexpenses.app.usecases.PaymentUseCase;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 

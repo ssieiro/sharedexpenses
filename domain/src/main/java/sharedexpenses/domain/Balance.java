@@ -11,7 +11,6 @@ public class Balance implements Comparable<Balance>{
         this.balance = balance;
         this.friend = friend;
     }
-
     public BigDecimal getBalance() { return balance; }
 
     public Friend getFriend() { return friend; }

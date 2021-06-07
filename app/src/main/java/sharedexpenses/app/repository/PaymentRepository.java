@@ -1,8 +1,6 @@
 package sharedexpenses.app.repository;
 
-
 import sharedexpenses.domain.Payment;
-
 import java.util.List;
 
 public interface PaymentRepository {

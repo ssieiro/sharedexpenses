@@ -1,12 +1,10 @@
 package sharedexpenses.app.repository.mysqlImp;
 
-
-import sharedexpenses.app.repository.FriendRepository;
 import sharedexpenses.app.repository.mysqlImp.mappers.FriendMapper;
 import sharedexpenses.domain.Friend;
+import sharedexpenses.app.repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component

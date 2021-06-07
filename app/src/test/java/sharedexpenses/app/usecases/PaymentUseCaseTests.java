@@ -5,9 +5,8 @@ import sharedexpenses.app.repository.PaymentRepository;
 import sharedexpenses.domain.Friend;
 import sharedexpenses.domain.FriendsGroup;
 import sharedexpenses.domain.Payment;
-import sharedexpenses.domain.dto.PaymentDTO;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import sharedexpenses.domain.dto.PaymentDTO;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

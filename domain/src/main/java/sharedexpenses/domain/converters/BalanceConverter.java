@@ -1,5 +1,6 @@
 package sharedexpenses.domain.converters;
 
+
 import sharedexpenses.domain.Balance;
 import sharedexpenses.domain.dto.BalanceDTO;
 

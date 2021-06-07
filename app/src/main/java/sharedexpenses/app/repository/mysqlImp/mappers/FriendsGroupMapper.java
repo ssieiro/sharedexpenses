@@ -1,8 +1,8 @@
 package sharedexpenses.app.repository.mysqlImp.mappers;
 
 
+import org.apache.ibatis.annotations.Mapper;
 import sharedexpenses.domain.FriendsGroup;
-import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 

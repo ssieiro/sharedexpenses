@@ -2,12 +2,12 @@ package sharedexpenses.app.usecases;
 
 import sharedexpenses.domain.Friend;
 import sharedexpenses.domain.Payment;
-import sharedexpenses.domain.converters.PaymentConverter;
-import sharedexpenses.domain.dto.PaymentDTO;
 import sharedexpenses.app.repository.FriendRepository;
 import sharedexpenses.app.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sharedexpenses.domain.converters.PaymentConverter;
+import sharedexpenses.domain.dto.PaymentDTO;
 
 import java.util.List;
 
