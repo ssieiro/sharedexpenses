@@ -8,12 +8,11 @@ cache:
 before_cache:
   - rm -rf $HOME/.m2/repository/com/sharedexpenses
 
-before_install:
-  - sudo apt-get install jq
-  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
+before_script:
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) download
 
 after_success:
-  - java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r target/site/jacoco-merged-test-coverage-report/jacoco.xml
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh)
 
 jdk:
   - oraclejdk11
