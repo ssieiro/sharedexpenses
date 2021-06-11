@@ -7,6 +7,7 @@
 	<modules>
 		<module>app</module>
 		<module>domain</module>
+		<module>testcoverage</module>
 	</modules>
 
 	<parent>
@@ -25,24 +26,5 @@
 		<java.version>11</java.version>
 		<mainClass>sharedexpenses.SharedExpensesApplication</mainClass>
 	</properties>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.4</version>
-				<executions>
-					<execution>
-						<id>report-aggregate</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>report-aggregate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
